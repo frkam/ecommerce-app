@@ -1,9 +1,20 @@
+import Header from "./components/header";
+import Login from "./pages/login";
+import Cart from "./pages/cart";
+import Home from "./pages/home";
+
+import { Routes, Route } from "react-router-dom";
+
 function App() {
   return (
-    <div className="bg-indigo-500 mx-8">
-      <h4 className="text-3xl font-bold underline text-red-600">LOL</h4>
-      <button className="btn">lol</button>
-    </div>
+    <main>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="login" element={<Login />}></Route>
+        <Route path="cart" element={<Cart />}></Route>
+      </Routes>
+    </main>
   );
 }
 
