@@ -1,16 +1,10 @@
 import Button from "../UI/button";
 
-import { Link } from "react-router-dom";
-import { useState } from "react";
-
-const Login: React.FC = () => {
-  const [Password, setPassword] = useState();
-  const [email, setEmail] = useState();
-
+const SignUp = () => {
   return (
     <div className="h-full">
       <div className="flex items-center flex-col w-1/4 mx-auto">
-        <h1 className="text-xl">Login</h1>
+        <h1 className="text-xl">Sign Up</h1>
         <div className="flex flex-col w-full">
           <label htmlFor="email">Email</label>
           <input
@@ -18,9 +12,6 @@ const Login: React.FC = () => {
             id="email"
             name="email"
             className="border-2 border-black rounded-md h-9 p-1"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setEmail(e.target.value)
-            }
           />
         </div>
         <div className="flex flex-col w-full">
@@ -32,16 +23,10 @@ const Login: React.FC = () => {
             className="border-2 border-black rounded-md h-9 p-1"
           />
         </div>
-        <Button>Login</Button>
-        <div className="flex">
-          <h3 className="mr-2">Don't have an account? </h3>
-          <Link to="/signup" className="underline">
-            Sign up now!
-          </Link>
-        </div>
+        <Button>Sign Up</Button>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default SignUp;

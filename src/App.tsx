@@ -2,6 +2,7 @@ import Header from "./components/header";
 import Login from "./pages/login";
 import Cart from "./pages/cart";
 import Home from "./pages/home";
+import SignUp from "./pages/signup";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -10,9 +11,10 @@ function App() {
     <main>
       <Header />
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="login" element={<Login />}></Route>
-        <Route path="cart" element={<Cart />}></Route>
+        <Route path="/" element={<Home />} />
+        <Route path="login" element={<Login />} />
+        <Route path="cart" element={<Cart />} />
+        <Route path="signup" element={<SignUp />} />
       </Routes>
     </main>
   );
