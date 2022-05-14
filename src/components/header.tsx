@@ -2,7 +2,7 @@ import logo from "../images/logo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -19,15 +19,15 @@ const Header = () => {
           <img alt="logo" src={logo} className="w-52" />
         </div>
         <div className="flex">
-          <Link to="login">
+          <NavLink to="login">
             <FontAwesomeIcon icon={solid("user")} className="w-8 h-8" />
-          </Link>
-          <Link to="cart">
+          </NavLink>
+          <NavLink to="cart">
             <FontAwesomeIcon
               icon={solid("cart-shopping")}
               className="w-8 h-8"
             />
-          </Link>
+          </NavLink>
         </div>
       </div>
     </header>

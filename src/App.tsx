@@ -3,7 +3,6 @@ import Login from "./pages/login";
 import Cart from "./pages/cart";
 import Home from "./pages/home";
 import SignUp from "./pages/signup";
-
 import { Routes, Route } from "react-router-dom";
 
 function App() {
