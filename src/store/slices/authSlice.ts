@@ -1,13 +1,20 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import { signUp } from "services/firebase";
+import { signIn, signUp } from "services/firebase";
 
-import { ISignUp, IAuth } from "types/auth.types";
+import { ISignUp, IAuth, ISignIn } from "types/auth.types";
 
 export const authSignUp = createAsyncThunk(
   "auth/signup",
   async (user: ISignUp) => {
     return await signUp(user);
+  }
+);
+
+export const authSignIn = createAsyncThunk(
+  "auth/signin",
+  async (user: ISignIn) => {
+    return await signIn(user);
   }
 );
 

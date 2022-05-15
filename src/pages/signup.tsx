@@ -4,14 +4,14 @@ import React, { useState } from "react";
 import { useAppDispatch } from "store/store";
 import { authSignUp } from "store/slices/authSlice";
 
-const userDefault = {
+const defaultUser = {
   email: "",
   password: "",
   confirmPassword: "",
 };
 
 const SignUp = () => {
-  const [user, setUser] = useState(userDefault);
+  const [user, setUser] = useState(defaultUser);
   const { email, password, confirmPassword } = user;
 
   const dispatch = useAppDispatch();
@@ -26,7 +26,7 @@ const SignUp = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(authSignUp(user));
-    setUser(userDefault);
+    setUser(defaultUser);
   };
 
   return (

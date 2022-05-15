@@ -1,12 +1,37 @@
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
-import { ISignUp } from "types/auth.types";
+
+import { ISignUp, ISignIn } from "types/auth.types";
 
 import { auth } from "firebase-config";
+import { useDispatch } from "react-redux";
 
 export const signUp = async (user: ISignUp) => {
   try {
-    const res = createUserWithEmailAndPassword(auth, user.email, user.password);
+    const res = await createUserWithEmailAndPassword(
+      auth,
+      user.email,
+      user.password
+    );
+
+    return res.user;
+  } catch (error: any) {
+    console.error(error.message);
+  }
+};
+
+export const signIn = async (user: ISignIn) => {
+  try {
+    const res = await signInWithEmailAndPassword(
+      auth,
+      user.email,
+      user.password
+    );
+
+    return res.user;
   } catch (error: any) {
     console.error(error.message);
   }

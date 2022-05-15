@@ -7,3 +7,8 @@ export interface ISignUp {
 }
 
 export interface IAuth extends FireAuth.User {}
+
+export interface ISignIn {
+  email: string;
+  password: string;
+}
