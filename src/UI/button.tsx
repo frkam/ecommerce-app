@@ -1,12 +1,20 @@
+import React from "react";
+
+type size = "sm" | "md" | "lg";
+
 const Button: React.FC<{
-  children?: JSX.Element | string;
+  children?: React.ReactNode;
   сlickHandler?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-}> = ({ children, сlickHandler }) => {
+  size?: size;
+  className?: string;
+  type?: "button" | "submit";
+}> = ({ children, сlickHandler, size = "sm", className, type }) => {
+  const buttonClass = `bg-accent h-10 rounded w-[8.4rem] text-white ${
+    className ? className : ""
+  }`;
+
   return (
-    <button
-      onClick={сlickHandler}
-      className="bg-blue-600 py-1 px-6 mt-3 rounded w-full"
-    >
+    <button type={type} onClick={сlickHandler} className={buttonClass}>
       {children}
     </button>
   );

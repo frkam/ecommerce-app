@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useAppDispatch } from "store/store";
 import { authSignIn } from "store/slices/authSlice";
 
+import PageHero from "components/common/pageHero";
+
 const defaultUser = {
   email: "",
   password: "",
@@ -30,42 +32,45 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="h-full">
-      <div className="flex items-center flex-col w-1/4 mx-auto">
-        <h1 className="text-xl">Sign In</h1>
-        <form onSubmit={handleSubmit} className="w-full">
-          <div className="flex flex-col w-full">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              className="input"
-              value={email}
-              onChange={handleChange}
-            />
+    <>
+      <PageHero link="login">My Account</PageHero>
+      <div className="h-full">
+        <div className="flex items-center flex-col w-1/4 mx-auto">
+          <h1 className="text-xl">Sign In</h1>
+          <form onSubmit={handleSubmit} className="w-full">
+            <div className="flex flex-col w-full">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                className="input"
+                value={email}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="flex flex-col w-full">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                className="input"
+                value={password}
+                onChange={handleChange}
+              />
+            </div>
+            <Button>Sign in</Button>
+          </form>
+          <div className="flex">
+            <h3 className="mr-2">Don't have an account? </h3>
+            <NavLink to="/signup" className="underline">
+              Sign up now!
+            </NavLink>
           </div>
-          <div className="flex flex-col w-full">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              className="input"
-              value={password}
-              onChange={handleChange}
-            />
-          </div>
-          <Button>Sign in</Button>
-        </form>
-        <div className="flex">
-          <h3 className="mr-2">Don't have an account? </h3>
-          <NavLink to="/signup" className="underline">
-            Sign up now!
-          </NavLink>
         </div>
       </div>
-    </div>
+    </> 
   );
 };
 

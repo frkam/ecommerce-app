@@ -1,10 +1,52 @@
 @tailwind base;
 @tailwind components;
-.input {
-  @apply border-2 border-black rounded-md h-9 p-1;
-}
-
 @tailwind utilities;
+
+@layer components {
+  .mobile-nav-item {
+    @apply flex flex-col items-center flex-1 justify-evenly text-slate-400;
+  }
+
+  .footer-header {
+    @apply font-josefin-sans sm:text-[1.375rem] text-lg;
+  }
+
+  .footer-list {
+    @apply tn1:mt-11 mt-2 mb-4 tn1:mb-0 flex gap-y-2 tn1:gap-y-5 flex-col text-base font-lato text-text-sub-dark-700;
+  }
+
+  .footer-list-active {
+    @apply flex;
+  }
+
+  .footer-list-disabled {
+    @apply hidden;
+  }
+
+  .contact-header {
+    @apply text-4xl text-text font-josefin-sans font-bold;
+  }
+
+  .contact-text {
+    @apply text-text-sub-dark-700 font-lato text-base;
+  }
+
+  .contact-color-sm {
+    @apply w-[25px] h-[25px] rounded-full;
+  }
+
+  .contact-color-lg {
+    @apply w-[45px] h-[45px] rounded-full;
+  }
+
+  .contact-input {
+    @apply border-2 border-input-border border-solid rounded-md px-3 w-full h-11;
+  }
+
+  .contact-textarea {
+    @apply border-2 border-input-border border-solid rounded-md;
+  }
+}
 
 @layer utilities {
   /* clears the ‘X’ from Internet Explorer */
@@ -24,5 +66,9 @@
   input[type="search"]::-webkit-search-results-button,
   input[type="search"]::-webkit-search-results-decoration {
     display: none;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
   }
 }
