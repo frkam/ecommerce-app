@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BsCart, BsHeart, BsSearch } from "react-icons/bs";
 import { IProduct } from "types/products.types";
 import { RatingStars } from "./ratingStars";
@@ -6,7 +6,6 @@ import { nanoid } from "nanoid";
 import { NavLink } from "react-router-dom";
 
 const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
-  console.log(products);
   const initProductsZoom = Array(products.length).fill(
     false,
     0,
@@ -20,10 +19,6 @@ const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
       return [...prev.slice(0, i), !prev[i], ...prev.slice(i + 1)];
     });
   };
-
-  useEffect(() => {
-    console.log(productsZoom);
-  });
 
   return (
     <React.Fragment>
