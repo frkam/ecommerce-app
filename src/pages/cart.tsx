@@ -1,9 +1,11 @@
-import PageHero from "components/common/pageHero"
+import { PageHero } from "components/UI/pageHero";
 
 const Cart = () => {
-    return <div>
-        <PageHero link="cart">Shopping Curt</PageHero>
-    </div>
-}
+  return (
+    <section>
+      <PageHero link="cart">Shopping Curt</PageHero>
+    </section>
+  );
+};
 
-export default Cart
+export default Cart;

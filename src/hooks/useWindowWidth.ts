@@ -5,7 +5,7 @@ const getWindowWidth = () => {
   return width;
 };
 
-const useWindowWidth = () => {
+export const useWindowWidth = () => {
   const [windowWidth, setWindowWidth] = useState(getWindowWidth());
 
   useEffect(() => {
@@ -19,5 +19,3 @@ const useWindowWidth = () => {
 
   return windowWidth;
 };
-
-export default useWindowWidth;

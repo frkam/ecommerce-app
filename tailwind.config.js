@@ -27,6 +27,7 @@ module.exports = {
         text: "#151875",
         accent: "#FB2E86",
         primary: "#F6F5FF",
+        disabled: "#6c757d",
         "text-dark": "#0D0E43",
         "text-sub-light": "#F1F0FF",
         "text-sub-dark": {
@@ -39,7 +40,11 @@ module.exports = {
           300: "#EEEFFB",
           500: "#E7E4F8",
         },
-        "input-border": "#E7E6EF",
+        input: {
+          ok: "rgba(164, 182, 200, 0.7)",
+          error: "#FB2E86",
+          successfull: "rgba(25, 209, 111, 1)",
+        },
         "color-circles": {
           turquoise: "rgba(55, 218, 243, 1)",
           pink: "rgba(255, 39, 183, 1)",
@@ -47,18 +52,41 @@ module.exports = {
           orange: "rgba(255, 178, 101, 1)",
           green: "rgba(27, 233, 130, 1)",
         },
+        stars: {
+          filled: "#FFC416",
+          outlined: "#B2B2B2",
+        },
       },
       dropShadow: {
         top: "0 -2px 8px rgb(0 0 0 / 15%)",
+        "input-ok": "0px 0px 5px rgba(164, 182, 200, 0.25)",
+        "input-error": "0px 0px 5px rgba(251, 46, 134, 0.25)",
+        "input-successfull": "0px 0px 5px rgba(25, 209, 111, 0.25)",
       },
       boxShadow: {
         top: "0 -2px 8px rgb(0 0 0 / 15%)",
+        card: "0px 0px 25px rgba(0, 0, 0, 0.1);",
+        controlCircle: '0px 0px 27.6px 0px rgba(0, 0, 0, 0.05)',
       },
       width: {
         sm: "8.4rem",
       },
       maxWidth: {
         "8xl": "79.8rem",
+      },
+      keyframes: {
+        shiftdown: {
+          "0%": {
+            opacity: "0",
+          },
+          "100%": {
+            opacity: "1",
+            bottom: "0",
+          },
+        },
+      },
+      animation: {
+        shiftdown: "shiftdown 0.5s ease-in-out",
       },
     },
   },

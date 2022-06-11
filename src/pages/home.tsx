@@ -1,5 +1,5 @@
 const Home = () => {
-  return <div>Home</div>;
+  return <section className="font">Home</section>;
 };
 
-export default Home;
+export default Home

@@ -12,3 +12,10 @@ export interface ISignIn {
   email: string;
   password: string;
 }
+
+export interface IMessageData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}

@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/332.89cae21d.chunk.js","mappings":"sIAIA,UAJa,WACX,OAAO,oBAASA,UAAU,OAAnB","sources":["pages/home.tsx"],"sourcesContent":["const Home = () => {\r\n  return <section className=\"font\">Home</section>;\r\n};\r\n\r\nexport default Home"],"names":["className"],"sourceRoot":""}

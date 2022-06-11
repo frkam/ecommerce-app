@@ -1,11 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-
-import authSlice from "./slices/authSlice";
+import productsSlice from "./slices/productsSlice";
 
 export const store = configureStore({
   reducer: {
-    authSlice,
+    products: productsSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkeccomerce_app=self.webpackChunkeccomerce_app||[]).push([[116],{5116:function(e,c,n){n.r(c);var p=n(184);c.default=function(){return(0,p.jsx)("section",{children:"signUp"})}}}]);
+//# sourceMappingURL=116.2388c372.chunk.js.map
