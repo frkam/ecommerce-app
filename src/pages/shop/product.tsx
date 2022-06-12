@@ -5,18 +5,39 @@ import { RatingStars } from "./ratingStars";
 import { nanoid } from "nanoid";
 import { NavLink } from "react-router-dom";
 
+import { useWindowWidth } from "hooks/useWindowWidth";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper";
+
 const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
+  const width = useWindowWidth();
+
+  const slidesPerViewConfig = (width: number) => {
+    if (width > 1024) {
+      return 3;
+    } else if (width < 1024 && width > 500) {
+      return 2;
+    } else {
+      return 1;
+    }
+  };
+
   const initProductsZoom = Array(products.length).fill(
     false,
     0,
     products.length
   );
 
-  const [productsZoom, setProductsZoom] = useState(initProductsZoom);
+  const [productZoom, setProductZoom] = useState(initProductsZoom);
 
   const zoomProductImage = (i: number) => {
-    setProductsZoom((prev) => {
-      return [...prev.slice(0, i), !prev[i], ...prev.slice(i + 1)];
+    setProductZoom((prev) => {
+      return [
+        ...initProductsZoom.slice(0, i),
+        !prev[i],
+        ...initProductsZoom.slice(i + 1),
+      ];
     });
   };
 
@@ -30,15 +51,37 @@ const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
         return (
           <div
             key={nanoid()}
-            className={`flex shadow-card p-4 items-center ${
-              productsZoom[i] ? "flex-col" : ""
+            className={`flex flex-col tn1:flex-row shadow-card p-4  ${
+              productZoom[i] ? "!flex-col items-start" : "items-center tn1:h-56"
             }`}
           >
-            <img
-              src={product.thumbnail}
-              alt={product.title}
-              className="sm:w-72 sm:h-48 w-48 h-24 mr-7 rounded-sm"
-            />
+            {!productZoom[i] && (
+              <img
+                src={product.thumbnail}
+                alt={product.title}
+                className="sm:w-72 sm:h-full tn1:w-48 tn1:h-full rounded-sm mb-5 w-full h-1/2 mx-auto tn1:mx-0 tn1:mr-7 tn1:mb-0"
+              />
+            )}
+            {productZoom[i] && (
+              <Swiper
+                slidesPerView={slidesPerViewConfig(width)}
+                modules={[Navigation]}
+                navigation
+                className="w-full mb-4"
+              >
+                {product.images.map((img) => {
+                  return (
+                    <SwiperSlide className="h-64" key={nanoid()}>
+                      <img
+                        src={img}
+                        alt="productImage"
+                        className="w-[30rem] h-full"
+                      />
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
+            )}
             <div>
               <NavLink to={product.id.toString()}>
                 <h3 className="text-text font-josefin-sans text-lg font-bold transition-[color] hover:text-accent w-fit">
@@ -67,7 +110,9 @@ const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
                   <BsCart />
                 </button>
                 <button
-                  className={`shadow-controlCircle w-9 h-9 rounded-full flex items-center justify-center`}
+                  className={`shadow-controlCircle w-9 h-9 rounded-full flex items-center justify-center ${
+                    productZoom[i] ? "text-accent" : ""
+                  }`}
                   onClick={() => zoomProductImage(i)}
                 >
                   <BsSearch />

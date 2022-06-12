@@ -84,7 +84,7 @@
   }
 
   .category-header {
-    @apply text-text font-josefin-sans text-[42px] font-bold
+    @apply text-text font-josefin-sans text-[42px] font-bold;
   }
 }
 

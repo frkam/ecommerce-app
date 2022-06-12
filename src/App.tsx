@@ -1,8 +1,10 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Notification } from "widgets/notification";
 import { lazy, Suspense } from "react";
+import "swiper/css";
+import "swiper/css/navigation";
 
-import { LoadingSpinner } from "components/utility/loadingSpinner";
+// import { LoadingSpinner } from "components/utility/loadingSpinner";
 
 import Header from "widgets/header/header";
 import Footer from "widgets/footer/footer";
