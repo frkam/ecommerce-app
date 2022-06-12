@@ -59,7 +59,7 @@ const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
               <img
                 src={product.thumbnail}
                 alt={product.title}
-                className="sm:w-72 sm:h-full tn1:w-48 tn1:h-full rounded-sm mb-5 w-full h-1/2 mx-auto tn1:mx-0 tn1:mr-7 tn1:mb-0"
+                className="sm:w-72 sm:h-full tn1:w-48 tn1:h-full rounded-sm mb-5 w-full h-1/2 mx-auto tn1:mx-0 tn1:mr-7 tn1:mb-0 select-none"
               />
             )}
             {productZoom[i] && (
@@ -67,7 +67,7 @@ const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
                 slidesPerView={slidesPerViewConfig(width)}
                 modules={[Navigation]}
                 navigation
-                className="w-full mb-4"
+                className="w-full mb-4 select-none"
               >
                 {product.images.map((img) => {
                   return (
