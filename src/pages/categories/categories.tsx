@@ -6,12 +6,13 @@ import laptop from "../../images/laptop.png";
 import womens_clothing from "../../images/womens_clothing.png";
 import phone from "../../images/phone.png";
 import mens_clothing from "../../images/mens_clothing.png";
+import { title } from "process";
 
 const categoriesData = {
   electronics: [
     {
       title: "Smartphones",
-      img: `${phone}`,  
+      img: `${phone}`,
       link: "smartphones",
     },
     {
@@ -44,7 +45,9 @@ const categoriesData = {
 const Categories = () => {
   return (
     <section>
-      <PageHero link="categories">Categories</PageHero>
+      <PageHero breadCrumbs={[{ title: "categories", link: "categories" }]}>
+        Categories
+      </PageHero>
       <div className="main-container">
         <div className="flex flex-col gap-y-8 text-center">
           <div className="flex items-center flex-col">
@@ -65,4 +68,4 @@ const Categories = () => {
   );
 };
 
-export default Categories
+export default Categories;

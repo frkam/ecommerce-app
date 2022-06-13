@@ -1,6 +1,5 @@
 import React from "react";
 import { IoIosStar, IoIosStarHalf, IoIosStarOutline } from "react-icons/io";
-import { nanoid } from "nanoid";
 
 export const RatingStars: React.FC<{ rating: number }> = ({ rating }) => {
   let hundreds = +(rating - +Math.floor(rating)).toFixed(2);
@@ -30,8 +29,8 @@ export const RatingStars: React.FC<{ rating: number }> = ({ rating }) => {
 
   return (
     <React.Fragment>
-      {stars.map((star) => {
-        return <React.Fragment key={nanoid()}>{star}</React.Fragment>;
+      {stars.map((star, i) => {
+        return <React.Fragment key={i}>{star}</React.Fragment>;
       })}
     </React.Fragment>
   );

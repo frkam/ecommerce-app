@@ -3,11 +3,11 @@ import axios from "axios";
 import { IProducts } from "types/products.types";
 
 const getProducts = async (categoryName: string) => {
-  const responce = await axios.get<IProducts>(
+  const response = await axios.get<IProducts>(
     `https://dummyjson.com/products/category/${categoryName}`
   );
 
-  return responce;
+  return response;
 };
 
 const productService = {

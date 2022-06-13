@@ -7,7 +7,9 @@ import { ContactForm } from "./contactForm";
 const Contact = () => {
   return (
     <div>
-      <PageHero link="contact">Contact Us</PageHero>
+      <PageHero breadCrumbs={[{ title: "contact", link: `contact` }]}>
+        Contact Us
+      </PageHero>
       <section className="main-container flex flex-col">
         <div className="flex sm:flex-row flex-col gap-x-14 xl:gap-x-28 mb-[7.5rem] xl:gap-y-0 gap-y-9">
           <div className="xl:max-w-[34.375rem] flex-1">
@@ -71,4 +73,4 @@ const Contact = () => {
   );
 };
 
-export default Contact
+export default Contact;

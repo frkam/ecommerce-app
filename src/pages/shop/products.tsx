@@ -1,28 +1,12 @@
 import React, { useState } from "react";
 import { BsCart, BsHeart, BsSearch } from "react-icons/bs";
 import { IProduct } from "types/products.types";
-import { RatingStars } from "./ratingStars";
-import { nanoid } from "nanoid";
+import { RatingStars } from "../../components/UI/ratingStars";
 import { NavLink } from "react-router-dom";
 
-import { useWindowWidth } from "hooks/useWindowWidth";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper";
+import Slider from "components/UI/slider";
 
 const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
-  const width = useWindowWidth();
-
-  const slidesPerViewConfig = (width: number) => {
-    if (width > 1024) {
-      return 3;
-    } else if (width < 1024 && width > 500) {
-      return 2;
-    } else {
-      return 1;
-    }
-  };
-
   const initProductsZoom = Array(products.length).fill(
     false,
     0,
@@ -50,7 +34,7 @@ const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
         ).toFixed(2);
         return (
           <div
-            key={nanoid()}
+            key={product.id}
             className={`flex flex-col tn1:flex-row shadow-card p-4  ${
               productZoom[i] ? "!flex-col items-start" : "items-center tn1:h-56"
             }`}
@@ -63,24 +47,13 @@ const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
               />
             )}
             {productZoom[i] && (
-              <Swiper
-                slidesPerView={slidesPerViewConfig(width)}
-                modules={[Navigation]}
-                navigation
-                className="w-full mb-4 select-none"
-              >
-                {product.images.map((img) => {
-                  return (
-                    <SwiperSlide className="h-64" key={nanoid()}>
-                      <img
-                        src={img}
-                        alt="productImage"
-                        className="w-[30rem] h-full"
-                      />
-                    </SwiperSlide>
-                  );
-                })}
-              </Swiper>
+              <Slider
+                images={product.images}
+                imageStyle={`w-[30rem] h-full`}
+                slideStyle={`h-64`}
+                swiperStyle={`mb-4`}
+                maxSlides={3}
+              />
             )}
             <div>
               <NavLink to={product.id.toString()}>
@@ -92,9 +65,9 @@ const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
                 </p>
               </NavLink>
               <div className="flex items-center">
-                <div className="font-josefin-sans pr-4">
-                  <span className="text-text pr-2">{priceWithDiscount}$</span>
-                  <span className="line-through text-accent">
+                <div className=" pr-4">
+                  <span className="price pr-2">{priceWithDiscount}$</span>
+                  <span className="price-without-discount">
                     {product.price}$
                   </span>
                 </div>
@@ -109,14 +82,16 @@ const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
                 <button className="shadow-controlCircle w-9 h-9 rounded-full flex items-center justify-center">
                   <BsCart />
                 </button>
-                <button
-                  className={`shadow-controlCircle w-9 h-9 rounded-full flex items-center justify-center ${
-                    productZoom[i] ? "text-accent" : ""
-                  }`}
-                  onClick={() => zoomProductImage(i)}
-                >
-                  <BsSearch />
-                </button>
+                {product.images.length > 2 && (
+                  <button
+                    className={`shadow-controlCircle w-9 h-9 rounded-full flex items-center justify-center ${
+                      productZoom[i] ? "text-accent" : ""
+                    }`}
+                    onClick={() => zoomProductImage(i)}
+                  >
+                    <BsSearch />
+                  </button>
+                )}
               </div>
             </div>
           </div>

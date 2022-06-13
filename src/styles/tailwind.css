@@ -86,6 +86,14 @@
   .category-header {
     @apply text-text font-josefin-sans text-[42px] font-bold;
   }
+
+  .price {
+    @apply text-text font-josefin-sans;
+  }
+
+  .price-without-discount {
+    @apply line-through text-accent font-josefin-sans;
+  }
 }
 
 @layer utilities {
