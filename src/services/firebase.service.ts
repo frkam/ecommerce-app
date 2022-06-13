@@ -3,7 +3,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 
-import { ISignUp, ISignIn, IMessageData } from "types/auth.types";
+import { ISignUp, ISignIn } from "types/auth.types";
 
 import { auth, db } from "firebase-config";
 

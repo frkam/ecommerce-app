@@ -12,6 +12,8 @@ import { getProductsByCategoryName } from "store/slices/productsSlice";
 import { IProduct } from "types/products.types";
 import Slider from "components/UI/slider";
 
+import { BsHeart } from "react-icons/bs";
+
 const Product = () => {
   const urlParams = useMatch("/categories/:category/:productId")!.params;
   const dispatch = useAppDispatch();
@@ -84,8 +86,10 @@ const Product = () => {
                   )}
                 </div>
                 <div className="w">
-                  <h1 className="contact-header">{productData.title}</h1>
-                  <div className="flex mt-2">
+                  <h1 className="contact-header capitalize">
+                    {productData.title}
+                  </h1>
+                  <div className="flex my-2">
                     <RatingStars rating={productData.rating} />
                     <span className="text-text font-josefin-sans text-sm ml-1">
                       ({productData.rating})
@@ -98,6 +102,17 @@ const Product = () => {
                     <span className="price-without-discount">
                       {productData.price}$
                     </span>
+                  </div>
+                  <p className="text-text-sub-dark-500 font-josefin-sans my-3">
+                    {productData.description}
+                  </p>
+                  <div className="flex gap-5 items-center ml-14">
+                    <button className="text-text font-josefin-sans">
+                      Add to cart
+                    </button>
+                    <button>
+                      <BsHeart></BsHeart>
+                    </button>
                   </div>
                 </div>
               </div>
