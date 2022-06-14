@@ -1,15 +1,15 @@
-import { PageHero } from "components/UI/pageHero"
-import NotFound from "pages/notFound"
-import { useEffect } from "react"
-import { useParams } from "react-router"
-import { useAppDispatch, useAppSelector } from "store/store"
-import { getProductsByCategoryName } from "store/slices/productsSlice"
-import Product from "./products"
+import { PageHero } from 'components/UI/pageHero'
+import NotFound from 'pages/notFound'
+import { useEffect } from 'react'
+import { useParams } from 'react-router'
+import { getProductsByCategoryName } from 'store/slices/productsSlice'
+import { useAppDispatch, useAppSelector } from 'store/store'
+import Product from './products'
 
 const Shop = () => {
   const { category } = useParams()
 
-  const categoryTitle = category?.replaceAll("-", " ")
+  const categoryTitle = category?.replaceAll('-', ' ')
 
   const dispatch = useAppDispatch()
 
@@ -22,12 +22,12 @@ const Shop = () => {
   return (
     <>
       {isLoading && <div>Loading....</div>}
-      {!isLoading && products.products.length === 0 && <NotFound></NotFound>}
+      {!isLoading && products.products.length === 0 && <NotFound />}
       {!isLoading && products.products.length > 0 && (
         <section>
           <PageHero
             breadCrumbs={[
-              { title: "categories", link: "categories" },
+              { title: 'categories', link: 'categories' },
               { title: categoryTitle!, link: `shop/${category}` },
             ]}
           >

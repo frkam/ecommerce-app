@@ -1,14 +1,12 @@
-import { BiPhoneCall, BiUser } from "react-icons/bi"
-import { HiOutlineMail } from "react-icons/hi"
-import { BsCart, BsHeart, BsSearch } from "react-icons/bs"
-import { AiOutlineHome, AiOutlineHeart } from "react-icons/ai"
-import { MdOutlineManageSearch } from "react-icons/md"
-
-import { NavLink } from "react-router-dom"
-
-import { Logo } from "components/UI/logo"
-
-import { useWindowWidth } from "hooks/useWindowWidth"
+import { Logo } from 'components/UI/logo'
+import { useWindowWidth } from 'hooks/useWindowWidth'
+import React from 'react'
+import { AiOutlineHeart, AiOutlineHome } from 'react-icons/ai'
+import { BiPhoneCall, BiUser } from 'react-icons/bi'
+import { BsCart, BsHeart, BsSearch } from 'react-icons/bs'
+import { HiOutlineMail } from 'react-icons/hi'
+import { MdOutlineManageSearch } from 'react-icons/md'
+import { NavLink } from 'react-router-dom'
 
 const Header = () => {
   const width = useWindowWidth()
@@ -17,8 +15,8 @@ const Header = () => {
 
   const isActiveClass = (isActive: boolean, basicStyle?: string) => {
     return isActive
-      ? `text-accent ${basicStyle ? basicStyle : ""}`
-      : `${basicStyle ? basicStyle : ""}`
+      ? `text-accent ${basicStyle ? basicStyle : ''}`
+      : `${basicStyle ? basicStyle : ''}`
   }
 
   return (
@@ -62,15 +60,24 @@ const Header = () => {
           <nav className="text-text-dark gap-x-4 lg:gap-x-9 font-medium items-end tn:items-center flex ml-6 tn:ml-9 md:ml-[5.5rem] w-full">
             {isSmWindowSize && (
               <>
-                <NavLink className={({ isActive }) => isActiveClass(isActive)} to="/">
+                <NavLink
+                  className={({ isActive }) => isActiveClass(isActive)}
+                  to="/"
+                >
                   Home
                 </NavLink>
-                <NavLink className={({ isActive }) => isActiveClass(isActive)} to="categories">
+                <NavLink
+                  className={({ isActive }) => isActiveClass(isActive)}
+                  to="categories"
+                >
                   Categories
                 </NavLink>
               </>
             )}
-            <NavLink className={({ isActive }) => isActiveClass(isActive)} to="contact">
+            <NavLink
+              className={({ isActive }) => isActiveClass(isActive)}
+              to="contact"
+            >
               Contact
             </NavLink>
           </nav>
@@ -89,14 +96,18 @@ const Header = () => {
         <div className="fixed h-14 w-full drop-shadow-top shadow-top bottom-0 bg-primary z-50">
           <nav className="flex h-full transition">
             <NavLink
-              className={({ isActive }) => isActiveClass(isActive, "text-sm mobile-nav-item")}
+              className={({ isActive }) =>
+                isActiveClass(isActive, 'text-sm mobile-nav-item')
+              }
               to="/"
             >
               <AiOutlineHome className="text-3xl" />
               Home
             </NavLink>
             <NavLink
-              className={({ isActive }) => isActiveClass(isActive, "text-sm mobile-nav-item")}
+              className={({ isActive }) =>
+                isActiveClass(isActive, 'text-sm mobile-nav-item')
+              }
               to="categories"
             >
               <MdOutlineManageSearch className="text-3xl" />
@@ -104,7 +115,9 @@ const Header = () => {
             </NavLink>
 
             <NavLink
-              className={({ isActive }) => isActiveClass(isActive, "text-sm mobile-nav-item")}
+              className={({ isActive }) =>
+                isActiveClass(isActive, 'text-sm mobile-nav-item')
+              }
               to="wishlist"
             >
               <AiOutlineHeart className="text-3xl" />
@@ -112,7 +125,9 @@ const Header = () => {
             </NavLink>
 
             <NavLink
-              className={({ isActive }) => isActiveClass(isActive, "text-sm mobile-nav-item")}
+              className={({ isActive }) =>
+                isActiveClass(isActive, 'text-sm mobile-nav-item')
+              }
               to="cart"
             >
               <BsCart className="text-3xl" />
@@ -120,7 +135,9 @@ const Header = () => {
             </NavLink>
 
             <NavLink
-              className={({ isActive }) => isActiveClass(isActive, "text-sm mobile-nav-item")}
+              className={({ isActive }) =>
+                isActiveClass(isActive, 'text-sm mobile-nav-item')
+              }
               to="login"
             >
               <BiUser className="text-3xl" />

@@ -1,4 +1,5 @@
-import { ToastContainer } from "react-toastify"
+import React from 'react'
+import { ToastContainer } from 'react-toastify'
 
 export const Notification = () => {
   return (

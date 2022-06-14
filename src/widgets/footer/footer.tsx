@@ -1,10 +1,8 @@
-import { useState } from "react"
-
-import { BsInstagram, BsFacebook, BsTwitter } from "react-icons/bs"
-import { NavLink } from "react-router-dom"
-import { IoIosArrowDropdown } from "react-icons/io"
-
-import { Logo } from "components/UI/logo"
+import { Logo } from 'components/UI/logo'
+import { useState } from 'react'
+import { BsFacebook, BsInstagram, BsTwitter } from 'react-icons/bs'
+import { IoIosArrowDropdown } from 'react-icons/io'
+import { NavLink } from 'react-router-dom'
 
 const initActiveList = [false, false, false]
 
@@ -15,8 +13,6 @@ const Footer = () => {
     const newActiveList = [...initActiveList]
 
     newActiveList[position] = !activeList[position]
-
-    console.log(newActiveList)
 
     setActiveList(newActiveList)
   }
@@ -35,16 +31,18 @@ const Footer = () => {
           <div>
             <div
               className={`flex items-center justify-start ${
-                activeList[0] ? "text-accent" : "text-black"
+                activeList[0] ? 'text-accent' : 'text-black'
               } tn:text-black gap-x-1`}
+              role="button"
+              tabIndex={0}
               onClick={toggleActiveList(0)}
             >
-              <h2 className={`footer-header`}>Categories</h2>
+              <h2 className="footer-header">Categories</h2>
               <IoIosArrowDropdown className="tn1:hidden" />
             </div>
             <ul
               className={`footer-list ${
-                activeList[0] ? "footer-list-active" : "footer-list-disabled"
+                activeList[0] ? 'footer-list-active' : 'footer-list-disabled'
               } tn1:flex items-start`}
             >
               <li>
@@ -54,29 +52,37 @@ const Footer = () => {
                 <NavLink to="cameras-and-photos">Cameras & Photography</NavLink>
               </li>
               <li>
-                <NavLink to="smartphones-and-tablets">Smart Phones & Tablets</NavLink>
+                <NavLink to="smartphones-and-tablets">
+                  Smart Phones & Tablets
+                </NavLink>
               </li>
               <li>
-                <NavLink to="videogames-and-consoles">Video Games & Consoles</NavLink>
+                <NavLink to="videogames-and-consoles">
+                  Video Games & Consoles
+                </NavLink>
               </li>
               <li>
-                <NavLink to="waterproof-Headphones">Waterproof Headphones</NavLink>
+                <NavLink to="waterproof-Headphones">
+                  Waterproof Headphones
+                </NavLink>
               </li>
             </ul>
           </div>
           <div>
             <div
               className={`flex items-center ${
-                activeList[1] ? "text-accent" : "text-black"
+                activeList[1] ? 'text-accent' : 'text-black'
               } tn:text-black gap-x-1`}
+              role="button"
+              tabIndex={0}
               onClick={toggleActiveList(1)}
             >
-              <h2 className={`footer-header`}>Customer Care</h2>
+              <h2 className="footer-header">Customer Care</h2>
               <IoIosArrowDropdown className="tn1:hidden" />
             </div>
             <ul
               className={`footer-list ${
-                activeList[1] ? "footer-list-active" : "footer-list-disabled"
+                activeList[1] ? 'footer-list-active' : 'footer-list-disabled'
               } tn1:flex`}
             >
               <li>
@@ -99,16 +105,18 @@ const Footer = () => {
           <div>
             <div
               className={`flex items-center ${
-                activeList[2] ? "text-accent" : "text-black"
+                activeList[2] ? 'text-accent' : 'text-black'
               } tn:text-black gap-x-1`}
+              role="button"
+              tabIndex={0}
               onClick={toggleActiveList(2)}
             >
-              <h2 className={`footer-header`}>Pages</h2>
+              <h2 className="footer-header">Pages</h2>
               <IoIosArrowDropdown className="tn1:hidden" />
             </div>
             <ul
               className={`footer-list ${
-                activeList[2] ? "footer-list-active" : "footer-list-disabled"
+                activeList[2] ? 'footer-list-active' : 'footer-list-disabled'
               } tn1:flex`}
             >
               <li>

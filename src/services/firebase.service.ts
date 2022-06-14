@@ -1,17 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
-
-import { ISignUp, ISignIn } from "types/auth.types"
-
-import { auth, db } from "firebase-config"
-
-import { collection, addDoc } from "firebase/firestore"
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth'
+import { addDoc, collection } from 'firebase/firestore'
+import { auth, db } from 'firebase-config'
+import { ISignIn, ISignUp } from 'types/auth.types'
 
 // Authentication
 
 export const signUp = async (user: ISignUp) => {
   try {
-    const res = await createUserWithEmailAndPassword(auth, user.email, user.password)
+    const res = await createUserWithEmailAndPassword(
+      auth,
+      user.email,
+      user.password
+    )
 
     return res.user
   } catch (error: any) {
@@ -21,7 +25,11 @@ export const signUp = async (user: ISignUp) => {
 
 export const signIn = async (user: ISignIn) => {
   try {
-    const res = await signInWithEmailAndPassword(auth, user.email, user.password)
+    const res = await signInWithEmailAndPassword(
+      auth,
+      user.email,
+      user.password
+    )
 
     return res.user
   } catch (error: any) {
@@ -37,7 +45,7 @@ export const addDocFirestore = async (data: object, collectionName: string) => {
       ...data,
     })
     return res
-  } catch (e: any) {
-    return Promise.reject(new Error(e))
+  } catch (error: any) {
+    return Promise.reject(new Error(error))
   }
 }

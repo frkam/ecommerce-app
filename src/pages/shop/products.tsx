@@ -1,19 +1,26 @@
-import React, { useState } from "react"
-import { BsCart, BsHeart, BsSearch } from "react-icons/bs"
-import { IProduct } from "types/products.types"
-import { RatingStars } from "../../components/UI/ratingStars"
-import { NavLink } from "react-router-dom"
-
-import Slider from "components/UI/slider"
+import Slider from 'components/UI/slider'
+import React, { useState } from 'react'
+import { BsCart, BsHeart, BsSearch } from 'react-icons/bs'
+import { NavLink } from 'react-router-dom'
+import { IProduct } from 'types/products.types'
+import { RatingStars } from '../../components/UI/ratingStars'
 
 const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
-  const initProductsZoom = Array(products.length).fill(false, 0, products.length)
+  const initProductsZoom = new Array(products.length).fill(
+    false,
+    0,
+    products.length
+  )
 
   const [productZoom, setProductZoom] = useState(initProductsZoom)
 
   const zoomProductImage = (i: number) => {
     setProductZoom((prev) => {
-      return [...initProductsZoom.slice(0, i), !prev[i], ...initProductsZoom.slice(i + 1)]
+      return [
+        ...initProductsZoom.slice(0, i),
+        !prev[i],
+        ...initProductsZoom.slice(i + 1),
+      ]
     })
   }
 
@@ -28,7 +35,7 @@ const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
           <div
             key={product.id}
             className={`flex flex-col tn1:flex-row shadow-card p-4  ${
-              productZoom[i] ? "!flex-col items-start" : "items-center tn1:h-56"
+              productZoom[i] ? '!flex-col items-start' : 'items-center tn1:h-56'
             }`}
           >
             {!productZoom[i] && (
@@ -41,9 +48,9 @@ const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
             {productZoom[i] && (
               <Slider
                 images={product.images}
-                imageStyle={`w-[30rem] h-full`}
-                slideStyle={`h-64`}
-                swiperStyle={`mb-4`}
+                imageStyle="w-[30rem] h-full"
+                slideStyle="h-64"
+                swiperStyle="mb-4"
                 maxSlides={3}
               />
             )}
@@ -59,10 +66,12 @@ const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
               <div className="flex items-center">
                 <div className=" pr-4">
                   <span className="price pr-2">{priceWithDiscount}$</span>
-                  <span className="price-without-discount">{product.price}$</span>
+                  <span className="price-without-discount">
+                    {product.price}$
+                  </span>
                 </div>
                 <span className="flex">
-                  <RatingStars rating={product.rating}></RatingStars>
+                  <RatingStars rating={product.rating} />
                 </span>
               </div>
               <div className="flex text-text text-xl gap-2 mt-8">
@@ -75,7 +84,7 @@ const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
                 {product.images.length > 2 && (
                   <button
                     className={`shadow-controlCircle w-9 h-9 rounded-full flex items-center justify-center ${
-                      productZoom[i] ? "text-accent" : ""
+                      productZoom[i] ? 'text-accent' : ''
                     }`}
                     onClick={() => zoomProductImage(i)}
                   >

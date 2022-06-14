@@ -1,16 +1,14 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-
-import { IProductsState } from "../../types/products.types"
-
-import productService from "services/products.service"
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import productService from 'services/products.service'
+import { IProductsState } from '../../types/products.types'
 
 export const getProductsByCategoryName = createAsyncThunk(
-  "products",
+  'products',
   async (categoryName: string) => {
     try {
       return await productService.getProducts(categoryName)
     } catch (error) {
-      console.error("Error" + error)
+      console.error('Error' + error)
     }
   }
 )
@@ -28,7 +26,7 @@ const initialState: IProductsState = {
 }
 
 const productsSlice = createSlice({
-  name: "products",
+  name: 'products',
   initialState,
   reducers: {},
   extraReducers: (builder) => {

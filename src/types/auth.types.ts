@@ -1,4 +1,4 @@
-import FireAuth from "firebase/auth"
+import FireAuth from 'firebase/auth'
 
 export interface ISignUp {
   email: string
@@ -6,7 +6,7 @@ export interface ISignUp {
   confirmPassword: string
 }
 
-export interface IAuth extends FireAuth.User {}
+export type IAuth = FireAuth.User
 
 export interface ISignIn {
   email: string

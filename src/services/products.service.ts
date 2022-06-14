@@ -1,6 +1,5 @@
-import axios from "axios"
-
-import { IProducts } from "types/products.types"
+import axios from 'axios'
+import { IProducts } from 'types/products.types'
 
 const getProducts = async (categoryName: string) => {
   const response = await axios.get<IProducts>(

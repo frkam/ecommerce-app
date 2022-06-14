@@ -1,7 +1,6 @@
-import { Swiper, SwiperSlide } from "swiper/react"
-import { Navigation } from "swiper"
-
-import { useWindowWidth } from "hooks/useWindowWidth"
+import { useWindowWidth } from 'hooks/useWindowWidth'
+import { Navigation } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 const Slider: React.FC<{
   images: string[]
@@ -16,11 +15,11 @@ const Slider: React.FC<{
   const slidesPerViewConfig = (width: number) => {
     if (width > 1024) {
       return maxSlides
-    } else if (width < 1024 && width > 500) {
-      return 2
-    } else {
-      return 1
     }
+    if (width < 1024 && width > 500) {
+      return 2
+    }
+    return 1
   }
 
   return (
@@ -32,7 +31,7 @@ const Slider: React.FC<{
     >
       {images.map((image) => {
         return (
-          <SwiperSlide className={`h-full ${slideStyle}`} key={image}>
+          <SwiperSlide key={image} className={`h-full ${slideStyle}`}>
             <img src={image} alt="productImage" className={imageStyle} />
           </SwiperSlide>
         )

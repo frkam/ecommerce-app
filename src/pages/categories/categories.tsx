@@ -1,42 +1,41 @@
-import { PageHero } from "components/UI/pageHero"
-import { CategoriesList } from "./categoriesList"
-
-import home_decoration from "../../images/home_decoration.png"
-import laptop from "../../images/laptop.png"
-import womens_clothing from "../../images/womens_clothing.png"
-import phone from "../../images/phone.png"
-import mens_clothing from "../../images/mens_clothing.png"
+import { PageHero } from 'components/UI/pageHero'
+import home_decoration from '../../images/home_decoration.png'
+import laptop from '../../images/laptop.png'
+import mens_clothing from '../../images/mens_clothing.png'
+import phone from '../../images/phone.png'
+import womens_clothing from '../../images/womens_clothing.png'
+import { CategoriesList } from './categoriesList'
 
 const categoriesData = {
   electronics: [
     {
-      title: "Smartphones",
+      title: 'Smartphones',
       img: `${phone}`,
-      link: "smartphones",
+      link: 'smartphones',
     },
     {
-      title: "Laptops",
+      title: 'Laptops',
       img: `${laptop}`,
-      link: "laptops",
+      link: 'laptops',
     },
   ],
   clothing: [
     {
       title: "Women's Dresses",
       img: `${womens_clothing}`,
-      link: "womens-dresses",
+      link: 'womens-dresses',
     },
     {
       title: "Men's Shirts",
       img: `${mens_clothing}`,
-      link: "mens-shirts",
+      link: 'mens-shirts',
     },
   ],
   home_decoration: [
     {
-      title: "Home Decoration",
+      title: 'Home Decoration',
       img: `${home_decoration}`,
-      link: "home-decoration",
+      link: 'home-decoration',
     },
   ],
 }
@@ -44,7 +43,9 @@ const categoriesData = {
 const Categories = () => {
   return (
     <section>
-      <PageHero breadCrumbs={[{ title: "categories", link: "categories" }]}>Categories</PageHero>
+      <PageHero breadCrumbs={[{ title: 'categories', link: 'categories' }]}>
+        Categories
+      </PageHero>
       <div className="main-container">
         <div className="flex flex-col gap-y-8 text-center">
           <div className="flex items-center flex-col">

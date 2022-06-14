@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react"
-
-import axios from "axios"
-import { IProduct } from "types/products.types"
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import { IProduct } from 'types/products.types'
 
 export const useAxios = (url: string) => {
   const [isLoading, setIsLoading] = useState(true)
@@ -15,8 +14,8 @@ export const useAxios = (url: string) => {
       .then((response) => {
         setData(response.data)
       })
-      .catch((err) => {
-        setError(err)
+      .catch((error_) => {
+        setError(error_)
       })
       .finally(() => {
         setIsLoading(false)

@@ -1,4 +1,4 @@
-import { CategoriesCard } from "./categoriesCard"
+import { CategoriesCard } from './categoriesCard'
 
 interface ICategoryItem {
   title: string

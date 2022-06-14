@@ -1,3 +1,3 @@
-const MESSAGES_STORE = "support-messages"
+const MESSAGES_STORE = 'support-messages'
 
 export { MESSAGES_STORE }

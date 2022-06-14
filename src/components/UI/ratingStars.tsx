@@ -1,8 +1,8 @@
-import React from "react"
-import { IoIosStar, IoIosStarHalf, IoIosStarOutline } from "react-icons/io"
+import React from 'react'
+import { IoIosStar, IoIosStarHalf, IoIosStarOutline } from 'react-icons/io'
 
 export const RatingStars: React.FC<{ rating: number }> = ({ rating }) => {
-  let hundreds = +(rating - +Math.floor(rating)).toFixed(2)
+  let hundreds = Number((rating - Number(Math.floor(rating))).toFixed(2))
 
   if (hundreds > 0.5) {
     hundreds = 1
