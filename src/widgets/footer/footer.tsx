@@ -1,26 +1,25 @@
-import { NavLink } from "react-router-dom";
+import { useState } from "react"
 
-import { BsInstagram, BsFacebook, BsTwitter } from "react-icons/bs";
-import { IoIosArrowDropdown } from "react-icons/io";
+import { BsInstagram, BsFacebook, BsTwitter } from "react-icons/bs"
+import { NavLink } from "react-router-dom"
+import { IoIosArrowDropdown } from "react-icons/io"
 
-import { Logo } from "components/UI/logo";
-import React, { useState } from "react";
+import { Logo } from "components/UI/logo"
 
-const initActiveList = [false, false, false];
+const initActiveList = [false, false, false]
 
 const Footer = () => {
-  const [activeList, setActiveList] = useState(initActiveList);
+  const [activeList, setActiveList] = useState(initActiveList)
 
-  const toggleActiveList =
-    (position: number) => (e: React.MouseEvent<HTMLElement>) => {
-      const newActiveList = [...initActiveList];
+  const toggleActiveList = (position: number) => () => {
+    const newActiveList = [...initActiveList]
 
-      newActiveList[position] = !activeList[position];
+    newActiveList[position] = !activeList[position]
 
-      console.log(newActiveList);
+    console.log(newActiveList)
 
-      setActiveList(newActiveList);
-    };
+    setActiveList(newActiveList)
+  }
 
   return (
     <footer className="bg-primary-dark-300 h-full lg:h-[29.5rem]">
@@ -55,19 +54,13 @@ const Footer = () => {
                 <NavLink to="cameras-and-photos">Cameras & Photography</NavLink>
               </li>
               <li>
-                <NavLink to="smartphones-and-tablets">
-                  Smart Phones & Tablets
-                </NavLink>
+                <NavLink to="smartphones-and-tablets">Smart Phones & Tablets</NavLink>
               </li>
               <li>
-                <NavLink to="videogames-and-consoles">
-                  Video Games & Consoles
-                </NavLink>
+                <NavLink to="videogames-and-consoles">Video Games & Consoles</NavLink>
               </li>
               <li>
-                <NavLink to="waterproof-Headphones">
-                  Waterproof Headphones
-                </NavLink>
+                <NavLink to="waterproof-Headphones">Waterproof Headphones</NavLink>
               </li>
             </ul>
           </div>
@@ -148,7 +141,7 @@ const Footer = () => {
         </div>
       </section>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

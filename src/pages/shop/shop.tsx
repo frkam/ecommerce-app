@@ -1,23 +1,23 @@
-import { PageHero } from "components/UI/pageHero";
-import NotFound from "pages/notFound";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { useAppDispatch, useAppSelector } from "store/store";
-import { getProductsByCategoryName } from "store/slices/productsSlice";
-import Product from "./products";
+import { PageHero } from "components/UI/pageHero"
+import NotFound from "pages/notFound"
+import { useEffect } from "react"
+import { useParams } from "react-router"
+import { useAppDispatch, useAppSelector } from "store/store"
+import { getProductsByCategoryName } from "store/slices/productsSlice"
+import Product from "./products"
 
 const Shop = () => {
-  const { category } = useParams();
+  const { category } = useParams()
 
-  const categoryTitle = category?.replaceAll("-", " ");
+  const categoryTitle = category?.replaceAll("-", " ")
 
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(getProductsByCategoryName(category!));
-  }, []);
+    dispatch(getProductsByCategoryName(category!))
+  }, [category, dispatch])
 
-  const { products, isLoading } = useAppSelector((state) => state.products);
+  const { products, isLoading } = useAppSelector((state) => state.products)
 
   return (
     <>
@@ -39,7 +39,7 @@ const Shop = () => {
         </section>
       )}
     </>
-  );
-};
+  )
+}
 
-export default Shop;
+export default Shop

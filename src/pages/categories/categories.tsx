@@ -1,12 +1,11 @@
-import { PageHero } from "components/UI/pageHero";
-import { CategoriesList } from "./categoriesList";
+import { PageHero } from "components/UI/pageHero"
+import { CategoriesList } from "./categoriesList"
 
-import home_decoration from "../../images/home_decoration.png";
-import laptop from "../../images/laptop.png";
-import womens_clothing from "../../images/womens_clothing.png";
-import phone from "../../images/phone.png";
-import mens_clothing from "../../images/mens_clothing.png";
-import { title } from "process";
+import home_decoration from "../../images/home_decoration.png"
+import laptop from "../../images/laptop.png"
+import womens_clothing from "../../images/womens_clothing.png"
+import phone from "../../images/phone.png"
+import mens_clothing from "../../images/mens_clothing.png"
 
 const categoriesData = {
   electronics: [
@@ -40,14 +39,12 @@ const categoriesData = {
       link: "home-decoration",
     },
   ],
-};
+}
 
 const Categories = () => {
   return (
     <section>
-      <PageHero breadCrumbs={[{ title: "categories", link: "categories" }]}>
-        Categories
-      </PageHero>
+      <PageHero breadCrumbs={[{ title: "categories", link: "categories" }]}>Categories</PageHero>
       <div className="main-container">
         <div className="flex flex-col gap-y-8 text-center">
           <div className="flex items-center flex-col">
@@ -65,7 +62,7 @@ const Categories = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Categories;
+export default Categories

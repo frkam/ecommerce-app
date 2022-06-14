@@ -1,4 +1,4 @@
-import { ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify"
 
 export const Notification = () => {
   return (
@@ -13,5 +13,5 @@ export const Notification = () => {
       draggable
       pauseOnHover
     />
-  );
-};
+  )
+}

@@ -1,32 +1,28 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { object, string } from "yup";
-import { Button } from "components/UI/button";
-import { addDocFirestore } from "../../services/firebase.service";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Formik, Form, Field, ErrorMessage } from "formik"
+import { object, string } from "yup"
+import { Button } from "components/UI/button"
+import { addDocFirestore } from "../../services/firebase.service"
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 const supportMessageSchema = object({
   name: string()
     .required("Name is required")
     .min(3, "Name is too short")
     .max(30, "Name is too long"),
-  email: string()
-    .email("This must be an email")
-    .required("Password is required"),
+  email: string().email("This must be an email").required("Password is required"),
   subject: string()
     .min(12, "Subject is too short")
     .max(200, "Subject is too long")
     .required("Subject is required"),
-  message: string()
-    .min(25, "Message is too short")
-    .required("Message is required"),
-});
+  message: string().min(25, "Message is too short").required("Message is required"),
+})
 
 interface Values {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
+  name: string
+  email: string
+  subject: string
+  message: string
 }
 
 const initialValues: Values = {
@@ -34,53 +30,52 @@ const initialValues: Values = {
   email: "",
   subject: "",
   message: "",
-};
+}
 
 export const ContactForm = () => {
   const inputClass = (touched?: boolean, error?: string) => {
     if (!error && !touched) {
-      return "input--ok";
+      return "input--ok"
     }
 
     if (error && touched) {
-      return "input--error";
+      return "input--error"
     }
 
     if (!error && touched) {
-      return "input--successfull";
+      return "input--successfull"
     }
 
-    return;
-  };
+    return
+  }
 
   const submitHandler = (data: object) => {
-    const promise = addDocFirestore(data, "support-messages");
+    const promise = addDocFirestore(data, "support-messages")
     toast.promise(promise, {
       pending: "Your message is being sent...",
       success: "Your message was sent",
       error: "Your message wasn't sent",
-    });
-  };
+    })
+  }
 
   return (
     <div>
       <h1 className="contact-header">Get In Touch</h1>
       <p className="max-w-[34.375rem] contact-text mt-5">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mattis neque
-        ultrices tristique amet erat vitae eget dolor los vitae lobortis quis
-        bibendum quam.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mattis neque ultrices tristique
+        amet erat vitae eget dolor los vitae lobortis quis bibendum quam.
       </p>
       <Formik
         initialValues={initialValues}
         onSubmit={(values, { resetForm }) => {
-          submitHandler(values);
-          resetForm();
+          submitHandler(values)
+          resetForm()
         }}
         validationSchema={supportMessageSchema}
         validateOnBlur
       >
         {(props) => {
-          const { errors, touched, isValid, dirty, values } = props;
+          const { errors, touched, isValid, dirty, values } = props
           return (
             <Form className="mt-10 max-w-[34.375rem]">
               <div className="mb-5 flex tn:flex-row flex-col gap-y-5 tn:gap-y-0 tn:gap-x-6">
@@ -93,11 +88,7 @@ export const ContactForm = () => {
                     className={`input ${inputClass(touched.name, errors.name)}`}
                     required
                   />
-                  <ErrorMessage
-                    name="name"
-                    component="span"
-                    className="input-error-msg"
-                  />
+                  <ErrorMessage name="name" component="span" className="input-error-msg" />
                 </div>
                 <div className="input-error-container">
                   <Field
@@ -105,17 +96,10 @@ export const ContactForm = () => {
                     name="email"
                     placeholder="Your Email*"
                     value={values.email}
-                    className={`input ${inputClass(
-                      touched.email,
-                      errors.email
-                    )}`}
+                    className={`input ${inputClass(touched.email, errors.email)}`}
                     required
                   />
-                  <ErrorMessage
-                    name="email"
-                    component="span"
-                    className="input-error-msg"
-                  />
+                  <ErrorMessage name="email" component="span" className="input-error-msg" />
                 </div>
               </div>
               <div>
@@ -125,17 +109,10 @@ export const ContactForm = () => {
                     name="subject"
                     placeholder="Subject*"
                     value={values.subject}
-                    className={`input ${inputClass(
-                      touched.subject,
-                      errors.subject
-                    )}`}
+                    className={`input ${inputClass(touched.subject, errors.subject)}`}
                     required
                   />
-                  <ErrorMessage
-                    name="subject"
-                    component="span"
-                    className="input-error-msg"
-                  />
+                  <ErrorMessage name="subject" component="span" className="input-error-msg" />
                 </div>
                 <div className="input-error-container mt-5">
                   <Field
@@ -145,16 +122,9 @@ export const ContactForm = () => {
                     placeholder="Type Your Message*"
                     required
                     value={values.message}
-                    className={`contact-textarea ${inputClass(
-                      touched.message,
-                      errors.message
-                    )}`}
+                    className={`contact-textarea ${inputClass(touched.message, errors.message)}`}
                   />
-                  <ErrorMessage
-                    name="message"
-                    component="span"
-                    className="input-error-msg"
-                  />
+                  <ErrorMessage name="message" component="span" className="input-error-msg" />
                 </div>
               </div>
               <Button
@@ -165,9 +135,9 @@ export const ContactForm = () => {
                 Send Mail
               </Button>
             </Form>
-          );
+          )
         }}
       </Formik>
     </div>
-  );
-};
+  )
+}

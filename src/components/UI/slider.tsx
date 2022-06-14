@@ -1,26 +1,27 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react"
+import { Navigation } from "swiper"
 
-import { useWindowWidth } from "hooks/useWindowWidth";
+import { useWindowWidth } from "hooks/useWindowWidth"
 
 const Slider: React.FC<{
-  images: string[];
-  imageStyle?: string;
-  slideStyle?: string;
-  swiperStyle?: string;
-  maxSlides: number;
+  images: string[]
+  imageStyle?: string
+  slideStyle?: string
+  swiperStyle?: string
+  maxSlides: number
 }> = ({ images, imageStyle, slideStyle, swiperStyle, maxSlides }) => {
-  const width = useWindowWidth();
+  const width = useWindowWidth()
 
+  // eslint-disable-next-line @typescript-eslint/no-shadow
   const slidesPerViewConfig = (width: number) => {
     if (width > 1024) {
-      return maxSlides;
+      return maxSlides
     } else if (width < 1024 && width > 500) {
-      return 2;
+      return 2
     } else {
-      return 1;
+      return 1
     }
-  };
+  }
 
   return (
     <Swiper
@@ -34,10 +35,10 @@ const Slider: React.FC<{
           <SwiperSlide className={`h-full ${slideStyle}`} key={image}>
             <img src={image} alt="productImage" className={imageStyle} />
           </SwiperSlide>
-        );
+        )
       })}
     </Swiper>
-  );
-};
+  )
+}
 
-export default Slider;
+export default Slider

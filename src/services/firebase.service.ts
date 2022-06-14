@@ -1,43 +1,33 @@
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
 
-import { ISignUp, ISignIn } from "types/auth.types";
+import { ISignUp, ISignIn } from "types/auth.types"
 
-import { auth, db } from "firebase-config";
+import { auth, db } from "firebase-config"
 
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore"
 
 // Authentication
 
 export const signUp = async (user: ISignUp) => {
   try {
-    const res = await createUserWithEmailAndPassword(
-      auth,
-      user.email,
-      user.password
-    );
+    const res = await createUserWithEmailAndPassword(auth, user.email, user.password)
 
-    return res.user;
+    return res.user
   } catch (error: any) {
-    console.error(error.message);
+    console.error(error.message)
   }
-};
+}
 
 export const signIn = async (user: ISignIn) => {
   try {
-    const res = await signInWithEmailAndPassword(
-      auth,
-      user.email,
-      user.password
-    );
+    const res = await signInWithEmailAndPassword(auth, user.email, user.password)
 
-    return res.user;
+    return res.user
   } catch (error: any) {
-    console.error(error.message);
+    console.error(error.message)
   }
-};
+}
 
 // Database
 
@@ -45,9 +35,9 @@ export const addDocFirestore = async (data: object, collectionName: string) => {
   try {
     const res = await addDoc(collection(db, `${collectionName}`), {
       ...data,
-    });
-    return res;
+    })
+    return res
   } catch (e: any) {
-    return Promise.reject(new Error(e));
+    return Promise.reject(new Error(e))
   }
-};
+}

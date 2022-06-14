@@ -1,30 +1,31 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 
-import axios from "axios";
-import { IProduct } from "types/products.types";
+import axios from "axios"
+import { IProduct } from "types/products.types"
 
 export const useAxios = (url: string) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState<IProduct>();
-  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true)
+  const [data, setData] = useState<IProduct>()
+  const [error, setError] = useState(null)
 
+  // eslint-disable-next-line @typescript-eslint/no-shadow
   const fetchData = (url: string) => {
     axios
       .get(url)
       .then((response) => {
-        setData(response.data);
+        setData(response.data)
       })
       .catch((err) => {
-        setError(err);
+        setError(err)
       })
       .finally(() => {
-        setIsLoading(false);
-      });
-  };
+        setIsLoading(false)
+      })
+  }
 
   useEffect(() => {
-    fetchData(url);
-  }, [url]);
+    fetchData(url)
+  }, [url])
 
-  return { data, isLoading, error };
-};
+  return { data, isLoading, error }
+}

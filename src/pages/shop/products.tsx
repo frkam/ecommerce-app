@@ -1,29 +1,21 @@
-import React, { useState } from "react";
-import { BsCart, BsHeart, BsSearch } from "react-icons/bs";
-import { IProduct } from "types/products.types";
-import { RatingStars } from "../../components/UI/ratingStars";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react"
+import { BsCart, BsHeart, BsSearch } from "react-icons/bs"
+import { IProduct } from "types/products.types"
+import { RatingStars } from "../../components/UI/ratingStars"
+import { NavLink } from "react-router-dom"
 
-import Slider from "components/UI/slider";
+import Slider from "components/UI/slider"
 
 const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
-  const initProductsZoom = Array(products.length).fill(
-    false,
-    0,
-    products.length
-  );
+  const initProductsZoom = Array(products.length).fill(false, 0, products.length)
 
-  const [productZoom, setProductZoom] = useState(initProductsZoom);
+  const [productZoom, setProductZoom] = useState(initProductsZoom)
 
   const zoomProductImage = (i: number) => {
     setProductZoom((prev) => {
-      return [
-        ...initProductsZoom.slice(0, i),
-        !prev[i],
-        ...initProductsZoom.slice(i + 1),
-      ];
-    });
-  };
+      return [...initProductsZoom.slice(0, i), !prev[i], ...initProductsZoom.slice(i + 1)]
+    })
+  }
 
   return (
     <React.Fragment>
@@ -31,7 +23,7 @@ const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
         const priceWithDiscount = (
           product.price -
           product.price * product.discountPercentage * 0.01
-        ).toFixed(2);
+        ).toFixed(2)
         return (
           <div
             key={product.id}
@@ -67,9 +59,7 @@ const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
               <div className="flex items-center">
                 <div className=" pr-4">
                   <span className="price pr-2">{priceWithDiscount}$</span>
-                  <span className="price-without-discount">
-                    {product.price}$
-                  </span>
+                  <span className="price-without-discount">{product.price}$</span>
                 </div>
                 <span className="flex">
                   <RatingStars rating={product.rating}></RatingStars>
@@ -95,10 +85,10 @@ const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
               </div>
             </div>
           </div>
-        );
+        )
       })}
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Product;
+export default Product

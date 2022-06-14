@@ -1,6 +1,6 @@
-import { Button } from "components/UI/button";
-import { PageHero } from "components/UI/pageHero";
-import notFoundImg from "images/404.png";
+import { Button } from "components/UI/button"
+import { PageHero } from "components/UI/pageHero"
+import notFoundImg from "images/404.png"
 
 const NotFound = () => {
   return (
@@ -13,7 +13,7 @@ const NotFound = () => {
         </Button>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default NotFound;
+export default NotFound

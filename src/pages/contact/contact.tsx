@@ -1,24 +1,21 @@
-import contact_img from "../../images/contact_help.png";
+import contact_img from "../../images/contact_help.png"
 
-import { PageHero } from "components/UI/pageHero";
+import { PageHero } from "components/UI/pageHero"
 
-import { ContactForm } from "./contactForm";
+import { ContactForm } from "./contactForm"
 
 const Contact = () => {
   return (
     <div>
-      <PageHero breadCrumbs={[{ title: "contact", link: `contact` }]}>
-        Contact Us
-      </PageHero>
+      <PageHero breadCrumbs={[{ title: "contact", link: `contact` }]}>Contact Us</PageHero>
       <section className="main-container flex flex-col">
         <div className="flex sm:flex-row flex-col gap-x-14 xl:gap-x-28 mb-[7.5rem] xl:gap-y-0 gap-y-9">
           <div className="xl:max-w-[34.375rem] flex-1">
             <h1 className="contact-header">Information About us</h1>
             <p className="contact-text mt-3">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mattis
-              neque ultrices mattis aliquam, malesuada diam est. Malesuada sem
-              tristique amet erat vitae eget dolor lobortis. Accumsan faucibus
-              vitae lobortis quis bibendum quam.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mattis neque ultrices mattis
+              aliquam, malesuada diam est. Malesuada sem tristique amet erat vitae eget dolor
+              lobortis. Accumsan faucibus vitae lobortis quis bibendum quam.
             </p>
             <div className="flex mt-[70px] gap-x-3">
               <div className="contact-color-sm bg-color-circles-violet" />
@@ -70,7 +67,7 @@ const Contact = () => {
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Contact;
+export default Contact

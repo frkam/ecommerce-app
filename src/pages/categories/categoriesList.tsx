@@ -1,13 +1,13 @@
-import { CategoriesCard } from "./categoriesCard";
+import { CategoriesCard } from "./categoriesCard"
 
 interface ICategoryItem {
-  title: string;
-  img: string;
-  link: string;
+  title: string
+  img: string
+  link: string
 }
 
 interface ICategoryData {
-  categoryData: ICategoryItem[];
+  categoryData: ICategoryItem[]
 }
 //
 export const CategoriesList: React.FC<ICategoryData> = ({ categoryData }) => {
@@ -22,9 +22,9 @@ export const CategoriesList: React.FC<ICategoryData> = ({ categoryData }) => {
               img={category.img}
               link={category.link}
             />
-          );
+          )
         })}
       </ul>
     </div>
-  );
-};
+  )
+}

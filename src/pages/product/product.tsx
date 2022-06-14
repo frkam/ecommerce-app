@@ -1,48 +1,45 @@
-import { PageHero } from "components/UI/pageHero";
+import { PageHero } from "components/UI/pageHero"
 
-import { useMatch } from "react-router";
+import { useMatch } from "react-router"
 
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom"
 
-import NotFound from "pages/notFound";
-import { RatingStars } from "components/UI/ratingStars";
-import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "store/store";
-import { getProductsByCategoryName } from "store/slices/productsSlice";
-import { IProduct } from "types/products.types";
-import Slider from "components/UI/slider";
+import NotFound from "pages/notFound"
+import { RatingStars } from "components/UI/ratingStars"
+import { useEffect } from "react"
+import { useAppDispatch, useAppSelector } from "store/store"
+import { getProductsByCategoryName } from "store/slices/productsSlice"
+import { IProduct } from "types/products.types"
+import Slider from "components/UI/slider"
 
-import { BsHeart } from "react-icons/bs";
+import { BsHeart } from "react-icons/bs"
 
 const Product = () => {
-  const urlParams = useMatch("/categories/:category/:productId")!.params;
-  const dispatch = useAppDispatch();
+  const urlParams = useMatch("/categories/:category/:productId")!.params
+  const dispatch = useAppDispatch()
 
-  const { products, isLoading } = useAppSelector((state) => state.products);
+  const { products, isLoading } = useAppSelector((state) => state.products)
 
   useEffect(() => {
     if (!products.products.length) {
-      dispatch(getProductsByCategoryName(urlParams.category!));
+      dispatch(getProductsByCategoryName(urlParams.category!))
     }
-  }, []);
+  }, [dispatch, products.products.length, urlParams.category])
 
-  const mainProductData = products.products.filter(
-    (item) => item.id === +urlParams.productId!
-  );
+  const mainProductData = products.products.filter((item) => item.id === +urlParams.productId!)
 
-  const relatedProductsData = products.products.filter(
-    (item) => item.id !== +urlParams.productId!
-  );
+  const relatedProductsData = products.products.filter((item) => item.id !== +urlParams.productId!)
 
-  const productData = mainProductData[0];
+  const productData = mainProductData[0]
 
+  // eslint-disable-next-line @typescript-eslint/no-shadow
   const priceWithDiscount = (productData: IProduct) => {
     const price = (
       productData?.price -
       productData?.price * productData?.discountPercentage * 0.01
-    ).toFixed(2);
-    return price;
-  };
+    ).toFixed(2)
+    return price
+  }
 
   return (
     <div>
@@ -78,17 +75,11 @@ const Product = () => {
                     className="w-full h-full"
                   />
                   {productData.images.length > 2 && (
-                    <Slider
-                      images={productData.images}
-                      imageStyle={`w-full h-32`}
-                      maxSlides={3}
-                    />
+                    <Slider images={productData.images} imageStyle={`w-full h-32`} maxSlides={3} />
                   )}
                 </div>
                 <div className="w">
-                  <h1 className="contact-header capitalize">
-                    {productData.title}
-                  </h1>
+                  <h1 className="contact-header capitalize">{productData.title}</h1>
                   <div className="flex my-2">
                     <RatingStars rating={productData.rating} />
                     <span className="text-text font-josefin-sans text-sm ml-1">
@@ -96,20 +87,14 @@ const Product = () => {
                     </span>
                   </div>
                   <div className="flex gap-4">
-                    <span className="price">
-                      {priceWithDiscount(productData)}$
-                    </span>
-                    <span className="price-without-discount">
-                      {productData.price}$
-                    </span>
+                    <span className="price">{priceWithDiscount(productData)}$</span>
+                    <span className="price-without-discount">{productData.price}$</span>
                   </div>
                   <p className="text-text-sub-dark-500 font-josefin-sans my-3">
                     {productData.description}
                   </p>
                   <div className="flex gap-5 items-center ml-14">
-                    <button className="text-text font-josefin-sans">
-                      Add to cart
-                    </button>
+                    <button className="text-text font-josefin-sans">Add to cart</button>
                     <button>
                       <BsHeart></BsHeart>
                     </button>
@@ -122,26 +107,20 @@ const Product = () => {
                   {relatedProductsData.map((product) => {
                     return (
                       <div key={product.id}>
-                        <NavLink
-                          to={`/categories/${urlParams.category}/${product.id}`}
-                        >
+                        <NavLink to={`/categories/${urlParams.category}/${product.id}`}>
                           <img src={product.thumbnail} alt={product.title} />
                         </NavLink>
                         <div className="flex items-center justify-between">
-                          <NavLink
-                            to={`/categories/${urlParams.category}/${product.id}`}
-                          >
+                          <NavLink to={`/categories/${urlParams.category}/${product.id}`}>
                             {product.title}
                           </NavLink>
                           <span className="flex">
                             <RatingStars rating={product.rating} />
                           </span>
                         </div>
-                        <span className="price">
-                          {priceWithDiscount(product)}$
-                        </span>
+                        <span className="price">{priceWithDiscount(product)}$</span>
                       </div>
-                    );
+                    )
                   })}
                 </div>
               </div>
@@ -150,7 +129,7 @@ const Product = () => {
         )}
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Product;
+export default Product
