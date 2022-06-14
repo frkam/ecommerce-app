@@ -1,1 +1,1 @@
-{"version":3,"file":"static/js/116.2388c372.chunk.js","mappings":"uIAIA,UAJe,WACb,OAAO","sources":["pages/signup.tsx"],"sourcesContent":["const SignUp = () => {\r\n  return <section>signUp</section>;\r\n};\r\n\r\nexport default SignUp;\r\n"],"names":[],"sourceRoot":""}
+{"version":3,"file":"static/js/116.2388c372.chunk.js","mappings":"uIAIA,UAJe,WACb,OAAO","sources":["pages/signup.tsx"],"sourcesContent":["const SignUp = () => {\n  return <section>signUp</section>\n}\n\nexport default SignUp\n"],"names":[],"sourceRoot":""}

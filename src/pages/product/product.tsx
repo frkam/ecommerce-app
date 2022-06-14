@@ -103,12 +103,12 @@ const Product = () => {
               </div>
               <div className="">
                 <h2 className="contact-header mb-12">Related Products</h2>
-                <div className="flex">
+                <div className="flex gap-6">
                   {relatedProductsData.map((product) => {
                     return (
                       <div key={product.id}>
                         <NavLink to={`/categories/${urlParams.category}/${product.id}`}>
-                          <img src={product.thumbnail} alt={product.title} />
+                          <img src={product.thumbnail} alt={product.title} className="h-full" />
                         </NavLink>
                         <div className="flex items-center justify-between">
                           <NavLink to={`/categories/${urlParams.category}/${product.id}`}>
