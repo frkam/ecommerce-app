@@ -1,4 +1,4 @@
-import Slider from 'components/UI/slider'
+import { Slider } from 'components/UI/slider'
 import React, { useState } from 'react'
 import { BsCart, BsHeart, BsSearch } from 'react-icons/bs'
 import { NavLink } from 'react-router-dom'
@@ -34,8 +34,8 @@ const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
         return (
           <div
             key={product.id}
-            className={`flex flex-col tn1:flex-row shadow-card p-4  ${
-              productZoom[i] ? '!flex-col items-start' : 'items-center tn1:h-56'
+            className={`flex flex-col tn1:flex-row shadow-card p-4 items-start ${
+              productZoom[i] ? '!flex-col' : 'tn1:h-56'
             }`}
           >
             {!productZoom[i] && (
@@ -49,8 +49,7 @@ const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
               <Slider
                 images={product.images}
                 imageStyle="w-[30rem] h-full"
-                slideStyle="h-64"
-                swiperStyle="mb-4"
+                swiperStyle="mb-4 h-64"
                 maxSlides={3}
               />
             )}

@@ -1,4 +1,3 @@
-import 'react-toastify/dist/ReactToastify.css'
 import { Button } from 'components/UI/button'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { toast } from 'react-toastify'
@@ -22,14 +21,7 @@ const supportMessageSchema = object({
     .required('Message is required'),
 })
 
-interface Values {
-  name: string
-  email: string
-  subject: string
-  message: string
-}
-
-const initialValues: Values = {
+const initialValues = {
   name: '',
   email: '',
   subject: '',

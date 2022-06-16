@@ -10,7 +10,7 @@ import Footer from 'widgets/footer/footer'
 import Header from 'widgets/header/header'
 import { Notification } from 'widgets/notification'
 
-const Login = lazy(() => import('pages/login'))
+const Login = lazy(() => import('pages/login/login'))
 const Cart = lazy(() => import('pages/cart'))
 const Home = lazy(() => import('pages/home'))
 const SignUp = lazy(() => import('pages/signup'))

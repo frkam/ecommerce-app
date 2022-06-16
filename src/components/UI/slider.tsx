@@ -1,8 +1,9 @@
 import { useWindowWidth } from 'hooks/useWindowWidth'
 import { Navigation } from 'swiper'
+// eslint-disable-next-line import/no-unresolved
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-const Slider: React.FC<{
+export const Slider: React.FC<{
   images: string[]
   imageStyle?: string
   slideStyle?: string
@@ -39,5 +40,3 @@ const Slider: React.FC<{
     </Swiper>
   )
 }
-
-export default Slider

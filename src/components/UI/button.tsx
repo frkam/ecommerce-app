@@ -22,7 +22,7 @@ export const Button: React.FC<{
   link = false,
   linkTo,
 }) => {
-  const buttonClass = `bg-accent h-10 rounded w-[8.4rem] text-white  ${
+  const buttonClass = `bg-accent h-10 rounded w-[8.4rem] text-white ${
     className ? className : ''
   } ${disabled ? 'bg-disabled' : ''}`
 

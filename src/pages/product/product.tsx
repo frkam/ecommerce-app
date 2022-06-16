@@ -1,6 +1,7 @@
 import { PageHero } from 'components/UI/pageHero'
 import { RatingStars } from 'components/UI/ratingStars'
-import Slider from 'components/UI/slider'
+import { Slider } from 'components/UI/slider'
+import { useWindowWidth } from 'hooks/useWindowWidth'
 import NotFound from 'pages/notFound'
 import { useEffect } from 'react'
 import { BsHeart } from 'react-icons/bs'
@@ -13,6 +14,7 @@ import { IProduct } from 'types/products.types'
 const Product = () => {
   const urlParams = useMatch('/categories/:category/:productId')!.params
   const dispatch = useAppDispatch()
+  const windowWidth = useWindowWidth()
 
   const { products, isLoading } = useAppSelector((state) => state.products)
 
@@ -55,7 +57,7 @@ const Product = () => {
                   link: `categories`,
                 },
                 {
-                  title: productData.category,
+                  title: productData.category.replaceAll('-', ' '),
                   link: `categories/${productData.category}`,
                 },
                 {
@@ -66,8 +68,8 @@ const Product = () => {
             >
               {productData.title}
             </PageHero>
-            <div className="main-container flex flex-col gap-y-[1.75rem]">
-              <div className="shadow-card w-[73.125rem] h-[31.8rem] flex rounded-sm gap-11 items-center p-3">
+            <div className="main-container flex flex-col gap-y-[1.75rem] items-center lg:items-start">
+              <div className="shadow-card xl:w-[73.125rem] xl:h-[31.8rem] lg:max-w-none max-w-min flex flex-col lg:flex-row rounded-sm gap-11 items-center p-3">
                 <div className="w-[34.3rem] h-full flex flex-col justify-center">
                   <img
                     src={productData.thumbnail}
@@ -116,34 +118,35 @@ const Product = () => {
               <div className="">
                 <h2 className="contact-header mb-12">Related Products</h2>
                 <div className="flex gap-6">
-                  {relatedProductsData.map((product) => {
-                    return (
-                      <div key={product.id}>
-                        <NavLink
-                          to={`/categories/${urlParams.category}/${product.id}`}
-                        >
-                          <img
-                            src={product.thumbnail}
-                            alt={product.title}
-                            className="h-full"
-                          />
-                        </NavLink>
-                        <div className="flex items-center justify-between">
+                  {windowWidth > 1024 &&
+                    relatedProductsData.map((product) => {
+                      return (
+                        <div key={product.id} className="h-72">
                           <NavLink
                             to={`/categories/${urlParams.category}/${product.id}`}
                           >
-                            {product.title}
+                            <img
+                              src={product.thumbnail}
+                              alt={product.title}
+                              className="h-full"
+                            />
                           </NavLink>
-                          <span className="flex">
-                            <RatingStars rating={product.rating} />
+                          <div className="flex items-center justify-between">
+                            <NavLink
+                              to={`/categories/${urlParams.category}/${product.id}`}
+                            >
+                              {product.title}
+                            </NavLink>
+                            <span className="flex">
+                              <RatingStars rating={product.rating} />
+                            </span>
+                          </div>
+                          <span className="price">
+                            {priceWithDiscount(product)}$
                           </span>
                         </div>
-                        <span className="price">
-                          {priceWithDiscount(product)}$
-                        </span>
-                      </div>
-                    )
-                  })}
+                      )
+                    })}
                 </div>
               </div>
             </div>
