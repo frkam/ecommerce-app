@@ -2,6 +2,7 @@
 import 'swiper/css'
 // eslint-disable-next-line import/no-unresolved
 import 'swiper/css/navigation'
+import 'react-toastify/dist/ReactToastify.css'
 import { ScrollToTop } from 'components/utility/scrollToTop'
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
@@ -13,12 +14,13 @@ import { Notification } from 'widgets/notification'
 const Login = lazy(() => import('pages/login/login'))
 const Cart = lazy(() => import('pages/cart'))
 const Home = lazy(() => import('pages/home'))
-const SignUp = lazy(() => import('pages/signup'))
+const SignUp = lazy(() => import('pages/signUp/signUp'))
 const Contact = lazy(() => import('pages/contact/contact'))
 const Shop = lazy(() => import('pages/shop/shop'))
 const Product = lazy(() => import('pages/product/product'))
 const Categories = lazy(() => import('pages/categories/categories'))
 const NotFound = lazy(() => import('pages/notFound'))
+const Profile = lazy(() => import('pages/profile/profile'))
 
 export function App() {
   return (
@@ -31,7 +33,7 @@ export function App() {
               <Route index element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/cart" element={<Cart />} />
-              <Route path="/signup" element={<SignUp />} />
+              <Route path="/sign-up" element={<SignUp />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/categories/:category" element={<Shop />} />
               <Route
@@ -39,6 +41,7 @@ export function App() {
                 element={<Product />}
               />
               <Route path="/categories" element={<Categories />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>

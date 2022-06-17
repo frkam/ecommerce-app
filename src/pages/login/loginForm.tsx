@@ -1,6 +1,7 @@
 import { Button } from 'components/UI/button'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
-// import { toast } from 'react-toastify'
+import { toast } from 'react-toastify'
+import { signIn } from 'services/firebase.service'
 import { object, string } from 'yup'
 
 const validationSchema = object({
@@ -33,7 +34,10 @@ const LoginForm = () => {
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values) => alert(values.password)}
+      onSubmit={(values, { resetForm }) => {
+        signIn(values)
+        resetForm()
+      }}
       validationSchema={validationSchema}
       validateOnBlur
     >
@@ -67,6 +71,7 @@ const LoginForm = () => {
                   errors.password
                 )}`}
                 required
+                type="password"
               />
               <ErrorMessage
                 name="password"
@@ -74,7 +79,11 @@ const LoginForm = () => {
                 className="input-error-msg"
               />
             </div>
-            <Button type="submit" className="w-full">
+            <Button
+              className="mt-4 font-josefin-sans w-full"
+              type="submit"
+              disabled={!(dirty && isValid)}
+            >
               Login
             </Button>
           </Form>

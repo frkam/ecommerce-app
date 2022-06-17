@@ -26,10 +26,10 @@ export const Button: React.FC<{
     className ? className : ''
   } ${disabled ? 'bg-disabled' : ''}`
 
-  if (link) {
+  if (link && linkTo) {
     return (
       <NavLink
-        to={linkTo!}
+        to={linkTo}
         className={`${buttonClass} flex items-center justify-center`}
       >
         {children}

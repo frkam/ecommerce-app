@@ -32,6 +32,10 @@ const Product = () => {
     (item) => item.id !== Number(urlParams.productId!)
   )
 
+  const relatedProductsImages = relatedProductsData.map(
+    (product) => product.thumbnail
+  )
+
   const productData = mainProductData[0]
 
   // eslint-disable-next-line @typescript-eslint/no-shadow
@@ -69,22 +73,23 @@ const Product = () => {
               {productData.title}
             </PageHero>
             <div className="main-container flex flex-col gap-y-[1.75rem] items-center lg:items-start">
-              <div className="shadow-card xl:w-[73.125rem] xl:h-[31.8rem] lg:max-w-none max-w-min flex flex-col lg:flex-row rounded-sm gap-11 items-center p-3">
-                <div className="w-[34.3rem] h-full flex flex-col justify-center">
+              <div className="shadow-card xl:w-[73.125rem] xl:h-[31.8rem] lg:max-w-none max-w-min flex flex-col lg:flex-row rounded-sm gap-11 sm:items-center p-3">
+                <div className="tn:w-[34.3rem] max-w-[90vw] h-full flex flex-col justify-center">
                   <img
                     src={productData.thumbnail}
                     alt={productData.title}
-                    className="w-full h-full"
+                    // className="w-full"
                   />
                   {productData.images.length > 2 && (
                     <Slider
                       images={productData.images}
-                      imageStyle="w-full h-32"
+                      imageStyle="w-full h-full"
+                      swiperStyle="h-32"
                       maxSlides={3}
                     />
                   )}
                 </div>
-                <div className="w">
+                <div className="">
                   <h1 className="contact-header capitalize">
                     {productData.title}
                   </h1>
@@ -113,40 +118,6 @@ const Product = () => {
                       <BsHeart />
                     </button>
                   </div>
-                </div>
-              </div>
-              <div className="">
-                <h2 className="contact-header mb-12">Related Products</h2>
-                <div className="flex gap-6">
-                  {windowWidth > 1024 &&
-                    relatedProductsData.map((product) => {
-                      return (
-                        <div key={product.id} className="h-72">
-                          <NavLink
-                            to={`/categories/${urlParams.category}/${product.id}`}
-                          >
-                            <img
-                              src={product.thumbnail}
-                              alt={product.title}
-                              className="h-full"
-                            />
-                          </NavLink>
-                          <div className="flex items-center justify-between">
-                            <NavLink
-                              to={`/categories/${urlParams.category}/${product.id}`}
-                            >
-                              {product.title}
-                            </NavLink>
-                            <span className="flex">
-                              <RatingStars rating={product.rating} />
-                            </span>
-                          </div>
-                          <span className="price">
-                            {priceWithDiscount(product)}$
-                          </span>
-                        </div>
-                      )
-                    })}
                 </div>
               </div>
             </div>
