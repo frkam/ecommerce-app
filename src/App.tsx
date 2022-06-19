@@ -3,6 +3,7 @@ import 'swiper/css'
 // eslint-disable-next-line import/no-unresolved
 import 'swiper/css/navigation'
 import 'react-toastify/dist/ReactToastify.css'
+import { RequireAuth } from 'components/utility/requireAuth'
 import { ScrollToTop } from 'components/utility/scrollToTop'
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
@@ -12,7 +13,7 @@ import Header from 'widgets/header/header'
 import { Notification } from 'widgets/notification'
 
 const Login = lazy(() => import('pages/login/login'))
-const Cart = lazy(() => import('pages/cart'))
+const Cart = lazy(() => import('pages/cart/cart'))
 const Home = lazy(() => import('pages/home'))
 const SignUp = lazy(() => import('pages/signUp/signUp'))
 const Contact = lazy(() => import('pages/contact/contact'))
@@ -32,7 +33,6 @@ export function App() {
             <Route path="/">
               <Route index element={<Home />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/cart" element={<Cart />} />
               <Route path="/sign-up" element={<SignUp />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/categories/:category" element={<Shop />} />
@@ -41,7 +41,22 @@ export function App() {
                 element={<Product />}
               />
               <Route path="/categories" element={<Categories />} />
-              <Route path="/profile" element={<Profile />} />
+              <Route
+                path="/cart"
+                element={
+                  <RequireAuth>
+                    <Cart />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <RequireAuth>
+                    <Profile />
+                  </RequireAuth>
+                }
+              />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>

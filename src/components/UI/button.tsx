@@ -5,7 +5,7 @@ type Size = 'sm' | 'md' | 'lg'
 
 export const Button: React.FC<{
   children?: React.ReactNode
-  сlickHandler?: (e: React.MouseEvent<HTMLButtonElement>) => void
+  сlickHandler?: any
   size?: Size
   className?: string
   type?: 'button' | 'submit'

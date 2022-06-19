@@ -2,12 +2,18 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut,
 } from 'firebase/auth'
-import { addDoc, collection } from 'firebase/firestore'
+import {
+  addDoc,
+  getDocFromServer,
+  doc,
+  collection,
+  getDocs,
+} from 'firebase/firestore'
 import { auth, db } from 'firebase-config'
 import { toast } from 'react-toastify'
 import { ISignIn, ISignUp } from 'types/auth.types'
+import { ICartItem } from 'types/cart.types'
 
 // Authentication
 
@@ -65,19 +71,39 @@ export const signIn = async (user: ISignIn) => {
   }
 }
 
-export const SignOut = async () => {
-  const logout = await signOut(auth)
-}
-
 // Database
 
-export const addDocFirestore = async (data: object, collectionName: string) => {
-  try {
-    const res = await addDoc(collection(db, `${collectionName}`), {
+export const addDocFirestore = async (
+  data: object,
+  collectionName: string,
+  collectionNameSegments?: string[]
+) => {
+  let response
+  if (collectionNameSegments) {
+    response = await addDoc(
+      collection(db, `${collectionName}`, ...collectionNameSegments),
+      {
+        ...data,
+      }
+    )
+  } else {
+    response = await addDoc(collection(db, `${collectionName}`), {
       ...data,
     })
-    return res
-  } catch (error: any) {
-    return Promise.reject(new Error(error))
   }
+  return response
+}
+
+export const getItemsFromCart = async (email: string) => {
+  const collections: ICartItem[] = []
+
+  const collectionRef = collection(db, 'shop-cart', email, 'cart')
+
+  const docs = await getDocs(collectionRef)
+
+  docs.forEach((doc) => {
+    collections.push(doc.data() as ICartItem)
+  })
+
+  return collections
 }

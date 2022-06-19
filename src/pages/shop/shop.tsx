@@ -2,7 +2,7 @@ import { PageHero } from 'components/UI/pageHero'
 import NotFound from 'pages/notFound'
 import { useEffect } from 'react'
 import { useParams } from 'react-router'
-import { getProductsByCategoryName } from 'store/slices/productsSlice'
+import { getProductsByCategoryName } from 'store/slices/productThunk'
 import { useAppDispatch, useAppSelector } from 'store/store'
 import Product from './products'
 

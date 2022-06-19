@@ -1,8 +1,16 @@
 import { PageHero } from 'components/UI/pageHero'
-import { NavLink } from 'react-router-dom'
+import { Navigate, NavLink } from 'react-router-dom'
 import SignUpForm from './signUpForm'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { auth } from 'firebase-config'
 
 const SignUp = () => {
+  const [user] = useAuthState(auth)
+
+  if (user) {
+    return <Navigate to="/profile" replace />
+  }
+
   const breadCrumbs = [
     {
       title: 'sign up',
@@ -14,7 +22,7 @@ const SignUp = () => {
     <section>
       <PageHero breadCrumbs={breadCrumbs}>Sign Up</PageHero>
       <div className="flex justify-center main-container">
-        <div className="flex flex-col items-center w-[34rem] p-12 shadow-card">
+        <div className="flex flex-col items-center w-[34rem] tn:p-12 p-2 shadow-card">
           <h1 className="text-black font-josefin-sans text-[34px] font-bold">
             Sign Up
           </h1>

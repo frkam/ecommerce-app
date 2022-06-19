@@ -1,6 +1,5 @@
 import { Button } from 'components/UI/button'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
-import { toast } from 'react-toastify'
 import { signUp } from 'services/firebase.service'
 import { object, ref, string } from 'yup'
 

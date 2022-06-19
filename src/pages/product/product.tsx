@@ -1,20 +1,21 @@
 import { PageHero } from 'components/UI/pageHero'
 import { RatingStars } from 'components/UI/ratingStars'
 import { Slider } from 'components/UI/slider'
-import { useWindowWidth } from 'hooks/useWindowWidth'
 import NotFound from 'pages/notFound'
 import { useEffect } from 'react'
 import { BsHeart } from 'react-icons/bs'
 import { useMatch } from 'react-router'
-import { NavLink } from 'react-router-dom'
-import { getProductsByCategoryName } from 'store/slices/productsSlice'
+import { getProductsByCategoryName } from 'store/slices/productThunk'
 import { useAppDispatch, useAppSelector } from 'store/store'
 import { IProduct } from 'types/products.types'
+import { addItemToCart } from 'store/slices/cartThunk'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { auth } from 'firebase-config'
 
 const Product = () => {
+  const [user] = useAuthState(auth)
   const urlParams = useMatch('/categories/:category/:productId')!.params
   const dispatch = useAppDispatch()
-  const windowWidth = useWindowWidth()
 
   const { products, isLoading } = useAppSelector((state) => state.products)
 
@@ -26,14 +27,6 @@ const Product = () => {
 
   const mainProductData = products.products.filter(
     (item) => item.id === Number(urlParams.productId!)
-  )
-
-  const relatedProductsData = products.products.filter(
-    (item) => item.id !== Number(urlParams.productId!)
-  )
-
-  const relatedProductsImages = relatedProductsData.map(
-    (product) => product.thumbnail
   )
 
   const productData = mainProductData[0]
@@ -78,7 +71,7 @@ const Product = () => {
                   <img
                     src={productData.thumbnail}
                     alt={productData.title}
-                    // className="w-full"
+                    className="max-h-60"
                   />
                   {productData.images.length > 2 && (
                     <Slider
@@ -111,7 +104,22 @@ const Product = () => {
                     {productData.description}
                   </p>
                   <div className="flex gap-5 items-center ml-14">
-                    <button className="text-text font-josefin-sans">
+                    <button
+                      className="text-text font-josefin-sans"
+                      onClick={() =>
+                        dispatch(
+                          addItemToCart({
+                            data: {
+                              id: productData.id,
+                              title: productData.title,
+                              price: productData.price,
+                              image: productData.thumbnail,
+                            },
+                            email: user!.email!,
+                          })
+                        )
+                      }
+                    >
                       Add to cart
                     </button>
                     <button>

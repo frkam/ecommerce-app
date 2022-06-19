@@ -1,6 +1,6 @@
 import { Button } from 'components/UI/button'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
-import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router'
 import { signIn } from 'services/firebase.service'
 import { object, string } from 'yup'
 
@@ -31,11 +31,13 @@ const inputClass = (touched?: boolean, error?: string) => {
 }
 
 const LoginForm = () => {
+  const navigate = useNavigate()
+
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={(values, { resetForm }) => {
-        signIn(values)
+        signIn(values).then(() => navigate('/profile'))
         resetForm()
       }}
       validationSchema={validationSchema}

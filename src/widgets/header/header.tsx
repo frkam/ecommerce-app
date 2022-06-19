@@ -1,8 +1,7 @@
 import { Logo } from 'components/UI/logo'
-import { onAuthStateChanged, User } from 'firebase/auth'
 import { auth } from 'firebase-config'
 import { useWindowWidth } from 'hooks/useWindowWidth'
-import React, { useEffect, useState } from 'react'
+import { useAuthState } from 'react-firebase-hooks/auth'
 import { AiOutlineHeart, AiOutlineHome } from 'react-icons/ai'
 import { BiPhoneCall, BiUser } from 'react-icons/bi'
 import { BsCart, BsHeart, BsSearch } from 'react-icons/bs'
@@ -12,6 +11,7 @@ import { NavLink } from 'react-router-dom'
 
 const Header = () => {
   const width = useWindowWidth()
+  const [user] = useAuthState(auth)
 
   const isSmWindowSize = width > 640
 
@@ -41,10 +41,18 @@ const Header = () => {
           </div>
           {isSmWindowSize && (
             <div className="flex items-center mr-2">
-              <div className="flex items-center mr-5 gap-x-1">
-                <NavLink to="login">Login</NavLink>
-                <BiUser />
-              </div>
+              {!user && (
+                <div className="flex items-center mr-5 gap-x-1">
+                  <NavLink to="login">Login</NavLink>
+                  <BiUser />
+                </div>
+              )}
+              {user && (
+                <div className="flex items-center mr-5 gap-x-1">
+                  <NavLink to="profile">Profile</NavLink>
+                  <BiUser />
+                </div>
+              )}
               <div className="flex items-center mr-7 gap-x-1">
                 <NavLink to="wishlist">Wishlist</NavLink>
                 <BsHeart />
@@ -135,16 +143,28 @@ const Header = () => {
               <BsCart className="text-3xl" />
               Cart
             </NavLink>
-
-            <NavLink
-              className={({ isActive }) =>
-                isActiveClass(isActive, 'text-sm mobile-nav-item')
-              }
-              to="login"
-            >
-              <BiUser className="text-3xl" />
-              Me
-            </NavLink>
+            {!user && (
+              <NavLink
+                className={({ isActive }) =>
+                  isActiveClass(isActive, 'text-sm mobile-nav-item')
+                }
+                to="login"
+              >
+                <BiUser className="text-3xl" />
+                Login
+              </NavLink>
+            )}
+            {user && (
+              <NavLink
+                className={({ isActive }) =>
+                  isActiveClass(isActive, 'text-sm mobile-nav-item')
+                }
+                to="profile"
+              >
+                <BiUser className="text-3xl" />
+                Me
+              </NavLink>
+            )}
           </nav>
         </div>
       )}

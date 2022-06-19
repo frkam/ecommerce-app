@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import { cartSlice } from './slices/cartSlice'
 import { productsSlice } from './slices/productsSlice'
 
 export const store = configureStore({
   reducer: {
     products: productsSlice.reducer,
+    cart: cartSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
