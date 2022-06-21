@@ -2,7 +2,7 @@ import { Button } from 'components/UI/button'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { toast } from 'react-toastify'
 import { object, string } from 'yup'
-import { addDocFirestore } from '../../services/firebase.service'
+import { addDocumentFirestore } from '../../services/firebase.service'
 
 const supportMessageSchema = object({
   name: string()
@@ -44,7 +44,7 @@ export const ContactForm = () => {
   }
 
   const submitHandler = (data: object) => {
-    const promise = addDocFirestore(data, 'support-messages')
+    const promise = addDocumentFirestore(data, 'support-messages')
     toast.promise(promise, {
       pending: 'Your message is being sent...',
       success: 'Your message was sent',

@@ -1,6 +1,11 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ICart, IItem } from 'types/cart.types'
-import { getCartItems, addItemToCart } from './cartThunk'
+import { createSlice } from '@reduxjs/toolkit'
+import { ICart } from 'types/cart.types'
+import {
+  addItemToCart,
+  changeQuantityOfItem,
+  clearCart,
+  getCartItems,
+} from './cartThunk'
 
 const initialState: ICart = {
   items: [],
@@ -12,24 +17,6 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    // addItemToCart(state: ICart, action: PayloadAction<IItem>) {
-    //
-    // },
-    // deleteItemFromCart(state: ICart, action: PayloadAction<number>) {
-    //   const findItem = state.items.find((item) => item.id === action.payload)
-    //   if (findItem) {
-    //     findItem.quantity--
-    //   }
-    //   if (findItem!.quantity < 1) {
-    //     state.items = state.items.filter((item) => item.id !== findItem?.id)
-    //   }
-    // },
-    // removeItemFromCart(state: ICart, action: PayloadAction<number>) {
-    //   state.items = state.items.filter((item) => item.id !== action.payload)
-    // },
-    // deleteAllItemsFromCart(state: ICart) {
-    //   state.items = []
-    // },
   },
   extraReducers: (builder) => {
     builder
@@ -41,15 +28,13 @@ export const cartSlice = createSlice({
         state.isLoading = false
         state.error = false
 
-        console.log(action.payload)
-
         const sortedItemsByTimestamp = action.payload!.sort((first, second) => {
           return second.timestamp - first.timestamp
         })
 
         state.items = sortedItemsByTimestamp || initialState.items
       })
-      .addCase(getCartItems.rejected, (state, action) => {
+      .addCase(getCartItems.rejected, (state) => {
         state.isLoading = false
         state.error = true
       })
@@ -63,12 +48,21 @@ export const cartSlice = createSlice({
           state.items.unshift({ ...action.payload!, quantity: 1 })
         }
       })
+      .addCase(clearCart.fulfilled, (state) => {
+        state.items = []
+      })
+      .addCase(changeQuantityOfItem.fulfilled, (state, action) => {
+        if (action.payload?.changedQuantity && action.payload.itemId) {
+          const findItemIndex = state.items.findIndex(
+            (item) => item.id === Number(action.payload?.itemId)
+          )
+
+          state.items[findItemIndex].quantity = action.payload.changedQuantity
+        } else if (action.payload?.itemId) {
+          state.items = state.items.filter(
+            (item) => item.id !== action.payload?.itemId
+          )
+        }
+      })
   },
 })
-
-// export const {
-//   addItemToCart,
-//   deleteAllItemsFromCart,
-//   deleteItemFromCart,
-//   removeItemFromCart,
-// } = cartSlice.actions

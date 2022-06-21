@@ -32,7 +32,7 @@ export function App() {
 
   useEffect(() => {
     if (user?.email && !loading) dispatch(getCartItems({ email: user.email }))
-  }, [user, loading])
+  }, [user, loading, dispatch])
 
   return (
     <ScrollToTop>

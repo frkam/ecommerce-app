@@ -114,6 +114,7 @@ const Product = () => {
                               title: productData.title,
                               price: productData.price,
                               image: productData.thumbnail,
+                              category: productData.category,
                             },
                             itemID: productData.id.toString(),
                             email: user!.email!,

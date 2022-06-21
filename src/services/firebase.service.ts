@@ -52,45 +52,68 @@ export const signIn = async (user: ISignIn) => {
 
 // Database
 
-export const addDocFirestore = async (
+export const addDocumentFirestore = async (
   data: object,
-  documentName: string,
-  documentNameSegments?: string[]
+  documentPath: string,
+  documentPathSegments?: string[]
 ) => {
-  let response
-  if (documentNameSegments) {
-    response = await setDoc(doc(db, documentName, ...documentNameSegments), {
-      ...data,
-    })
-  } else {
-    response = await addDoc(collection(db, `${documentName}`), {
-      ...data,
-    })
+  if (documentPathSegments && documentPathSegments.length > 0) {
+    const promise = await setDoc(
+      doc(db, documentPath, ...documentPathSegments),
+      {
+        ...data,
+      }
+    )
+    return promise
   }
-  return response
+
+  const promise = await addDoc(collection(db, documentPath), {
+    ...data,
+  })
+
+  return promise
 }
 
-export const updateDocFirestore = async (
+export const updateDocumentFirestore = async (
   data: object,
-  documentName: string,
-  documentNameSegments: string[]
+  documentPath: string,
+  documentPathSegments: string[]
 ) => {
-  const docReference = doc(db, documentName, ...documentNameSegments)
+  const docReference = doc(db, documentPath, ...documentPathSegments)
 
   const response = await updateDoc(docReference, data)
 
   return response
 }
 
-export const getItemsFromCart = async (email: string) => {
-  const collections: ICartItem[] = []
-
-  const collectionRef = collection(db, 'shop-cart', email, 'cart')
+export const getDocsFromFirestore = async (
+  collectionPath: string,
+  collectionPathSegments: string[]
+) => {
+  const collectionRef = collection(
+    db,
+    collectionPath,
+    ...collectionPathSegments
+  )
 
   const docs = await getDocs(collectionRef)
 
+  return docs
+}
+
+export const getCollectionsFromFirestore = async <ItemType>(
+  collectionPath: string,
+  collectionPathSegments: string[]
+): Promise<ItemType[]> => {
+  const collections: ItemType[] = []
+
+  const docs = await getDocsFromFirestore(
+    collectionPath,
+    collectionPathSegments
+  )
+
   docs.forEach((doc) => {
-    collections.push(doc.data() as ICartItem)
+    collections.push(doc.data() as ItemType)
   })
 
   return collections

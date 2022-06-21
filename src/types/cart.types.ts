@@ -3,6 +3,7 @@ export interface IItem {
   title: string
   price: number
   image: string
+  category: string
 }
 
 export interface ICartItem extends IItem {

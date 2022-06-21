@@ -82,7 +82,7 @@ const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
               </div>
               <div className="flex text-text text-xl gap-2 mt-8">
                 <button
-                  className="shadow-controlCircle w-9 h-9 rounded-full flex items-center justify-center"
+                  className="shadow-controlCircle w-9 h-9 rounded-full flex items-center justify-center hover:text-accent transition-colors"
                   onClick={() =>
                     dispatch(
                       addItemToCart({
@@ -91,6 +91,7 @@ const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
                           title: product.title,
                           price: product.price,
                           image: product.thumbnail,
+                          category: product.category,
                         },
                         itemID: product.id.toString(),
                         email: user!.email!,
@@ -102,7 +103,7 @@ const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
                 </button>
                 {product.images.length > 2 && (
                   <button
-                    className={`shadow-controlCircle w-9 h-9 rounded-full flex items-center justify-center ${
+                    className={`shadow-controlCircle w-9 h-9 rounded-full flex items-center justify-center hover:text-accent transition-colors ${
                       productZoom[i] ? 'text-accent' : ''
                     }`}
                     onClick={() => zoomProductImage(i)}
