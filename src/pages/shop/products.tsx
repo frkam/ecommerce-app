@@ -1,11 +1,18 @@
 import { Slider } from 'components/UI/slider'
+import { auth } from 'firebase-config'
 import React, { useState } from 'react'
-import { BsCart, BsHeart, BsSearch } from 'react-icons/bs'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { BsCart, BsSearch } from 'react-icons/bs'
 import { NavLink } from 'react-router-dom'
+import { addItemToCart } from 'store/slices/cartThunk'
+import { useAppDispatch } from 'store/store'
 import { IProduct } from 'types/products.types'
 import { RatingStars } from '../../components/UI/ratingStars'
 
 const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
+  const [user] = useAuthState(auth)
+  const dispatch = useAppDispatch()
+
   const initProductsZoom = new Array(products.length).fill(
     false,
     0,
@@ -74,10 +81,23 @@ const Product: React.FC<{ products: IProduct[] }> = ({ products }) => {
                 </span>
               </div>
               <div className="flex text-text text-xl gap-2 mt-8">
-                <button className="shadow-controlCircle w-9 h-9 rounded-full flex items-center justify-center">
-                  <BsHeart />
-                </button>
-                <button className="shadow-controlCircle w-9 h-9 rounded-full flex items-center justify-center">
+                <button
+                  className="shadow-controlCircle w-9 h-9 rounded-full flex items-center justify-center"
+                  onClick={() =>
+                    dispatch(
+                      addItemToCart({
+                        data: {
+                          id: product.id,
+                          title: product.title,
+                          price: product.price,
+                          image: product.thumbnail,
+                        },
+                        itemID: product.id.toString(),
+                        email: user!.email!,
+                      })
+                    )
+                  }
+                >
                   <BsCart />
                 </button>
                 {product.images.length > 2 && (

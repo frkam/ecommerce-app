@@ -1,16 +1,16 @@
 import { PageHero } from 'components/UI/pageHero'
 import { RatingStars } from 'components/UI/ratingStars'
 import { Slider } from 'components/UI/slider'
+import { auth } from 'firebase-config'
 import NotFound from 'pages/notFound'
 import { useEffect } from 'react'
+import { useAuthState } from 'react-firebase-hooks/auth'
 import { BsHeart } from 'react-icons/bs'
 import { useMatch } from 'react-router'
+import { addItemToCart } from 'store/slices/cartThunk'
 import { getProductsByCategoryName } from 'store/slices/productThunk'
 import { useAppDispatch, useAppSelector } from 'store/store'
 import { IProduct } from 'types/products.types'
-import { addItemToCart } from 'store/slices/cartThunk'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { auth } from 'firebase-config'
 
 const Product = () => {
   const [user] = useAuthState(auth)
@@ -105,7 +105,7 @@ const Product = () => {
                   </p>
                   <div className="flex gap-5 items-center ml-14">
                     <button
-                      className="text-text font-josefin-sans"
+                      className="text-text font-josefin-sans hover:text-accent transition-colors"
                       onClick={() =>
                         dispatch(
                           addItemToCart({
@@ -115,15 +115,13 @@ const Product = () => {
                               price: productData.price,
                               image: productData.thumbnail,
                             },
+                            itemID: productData.id.toString(),
                             email: user!.email!,
                           })
                         )
                       }
                     >
                       Add to cart
-                    </button>
-                    <button>
-                      <BsHeart />
                     </button>
                   </div>
                 </div>

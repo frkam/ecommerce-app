@@ -5,10 +5,11 @@ import {
 } from 'firebase/auth'
 import {
   addDoc,
-  getDocFromServer,
-  doc,
   collection,
+  doc,
   getDocs,
+  setDoc,
+  updateDoc,
 } from 'firebase/firestore'
 import { auth, db } from 'firebase-config'
 import { toast } from 'react-toastify'
@@ -24,14 +25,7 @@ export const signUp = async (user: ISignUp) => {
     signIn({ email: user.email, password: user.password })
   } catch (error: any) {
     if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
-      toast.error('This email is already used', {
-        position: 'bottom-left',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      })
+      toast.error('This email is already used')
     }
   }
 }
@@ -43,29 +37,14 @@ export const signIn = async (user: ISignIn) => {
       user.email,
       user.password
     )
-
     return res.user
   } catch (error: any) {
     if (error.message === 'Firebase: Error (auth/wrong-password).') {
-      toast.error('You entered wrong password', {
-        position: 'bottom-left',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      })
+      toast.error('You entered wrong password')
       throw new Error(error.message)
     }
     if (error.message === 'Firebase: Error (auth/user-not-found).') {
-      toast.error('The user with this email was not found', {
-        position: 'bottom-left',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      })
+      toast.error('The user with this email was not found')
       throw new Error(error.message)
     }
   }
@@ -75,22 +54,31 @@ export const signIn = async (user: ISignIn) => {
 
 export const addDocFirestore = async (
   data: object,
-  collectionName: string,
-  collectionNameSegments?: string[]
+  documentName: string,
+  documentNameSegments?: string[]
 ) => {
   let response
-  if (collectionNameSegments) {
-    response = await addDoc(
-      collection(db, `${collectionName}`, ...collectionNameSegments),
-      {
-        ...data,
-      }
-    )
+  if (documentNameSegments) {
+    response = await setDoc(doc(db, documentName, ...documentNameSegments), {
+      ...data,
+    })
   } else {
-    response = await addDoc(collection(db, `${collectionName}`), {
+    response = await addDoc(collection(db, `${documentName}`), {
       ...data,
     })
   }
+  return response
+}
+
+export const updateDocFirestore = async (
+  data: object,
+  documentName: string,
+  documentNameSegments: string[]
+) => {
+  const docReference = doc(db, documentName, ...documentNameSegments)
+
+  const response = await updateDoc(docReference, data)
+
   return response
 }
 

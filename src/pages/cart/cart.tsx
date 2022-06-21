@@ -1,22 +1,8 @@
 import { PageHero } from 'components/UI/pageHero'
-import { useAppDispatch, useAppSelector } from 'store/store'
-// import { addItemToCart, deleteItemFromCart } from 'store/slices/cartSlice'
-import { getCartItems } from 'store/slices/cartThunk'
-import { useEffect } from 'react'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { auth } from 'firebase-config'
+import { useAppSelector } from 'store/store'
 
 const Cart = () => {
-  const [user, loading] = useAuthState(auth)
   const { items } = useAppSelector((state) => state.cart)
-  const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    if (user?.email && !loading) dispatch(getCartItems({ email: user.email }))
-  }, [user, loading])
-
-  console.log(items)
-
   const breadCrumbs = [
     {
       link: `/cart`,

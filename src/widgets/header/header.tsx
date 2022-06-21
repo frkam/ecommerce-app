@@ -53,10 +53,6 @@ const Header = () => {
                   <BiUser />
                 </div>
               )}
-              <div className="flex items-center mr-7 gap-x-1">
-                <NavLink to="wishlist">Wishlist</NavLink>
-                <BsHeart />
-              </div>
               <NavLink to="cart">
                 <BsCart className="text-xl" />
               </NavLink>
@@ -123,17 +119,6 @@ const Header = () => {
               <MdOutlineManageSearch className="text-3xl" />
               Categories
             </NavLink>
-
-            <NavLink
-              className={({ isActive }) =>
-                isActiveClass(isActive, 'text-sm mobile-nav-item')
-              }
-              to="wishlist"
-            >
-              <AiOutlineHeart className="text-3xl" />
-              Wishlist
-            </NavLink>
-
             <NavLink
               className={({ isActive }) =>
                 isActiveClass(isActive, 'text-sm mobile-nav-item')

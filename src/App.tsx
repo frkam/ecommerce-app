@@ -5,10 +5,13 @@ import 'swiper/css/navigation'
 import 'react-toastify/dist/ReactToastify.css'
 import { RequireAuth } from 'components/utility/requireAuth'
 import { ScrollToTop } from 'components/utility/scrollToTop'
-import { lazy, Suspense } from 'react'
+import { auth } from 'firebase-config'
+import { lazy, Suspense, useEffect } from 'react'
+import { useAuthState } from 'react-firebase-hooks/auth'
 import { Route, Routes } from 'react-router-dom'
+import { getCartItems } from 'store/slices/cartThunk'
+import { useAppDispatch } from 'store/store'
 import Footer from 'widgets/footer/footer'
-// import { LoadingSpinner } from "components/utility/loadingSpinner";
 import Header from 'widgets/header/header'
 import { Notification } from 'widgets/notification'
 
@@ -24,6 +27,13 @@ const NotFound = lazy(() => import('pages/notFound'))
 const Profile = lazy(() => import('pages/profile/profile'))
 
 export function App() {
+  const [user, loading] = useAuthState(auth)
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    if (user?.email && !loading) dispatch(getCartItems({ email: user.email }))
+  }, [user, loading])
+
   return (
     <ScrollToTop>
       <Header />
