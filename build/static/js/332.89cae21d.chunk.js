@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkeccomerce_app=self.webpackChunkeccomerce_app||[]).push([[332],{332:function(e,c,n){n.r(c);var s=n(184);c.default=function(){return(0,s.jsx)("section",{className:"font",children:"Home"})}}}]);
-//# sourceMappingURL=332.89cae21d.chunk.js.map
